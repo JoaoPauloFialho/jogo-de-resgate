@@ -11,13 +11,16 @@ protected:
     bool ativo;
 public:
     ObjetoDoJogo();
+    ObjetoDoJogo(int numX, int numY);    
     void colideComObjeto(ObjetoDoJogo obj){};
     void atualizaSprite();
-    void moveTo();
+    void moveTo(string lado);
     void ativa();
     void desativa();
-    void desenharSla();
+    bool getAtivo();
     int getX();
+    void setX(int numero);
+    void setY(int numero);
     int getY();
     SpriteAnimado getSprites();
 };

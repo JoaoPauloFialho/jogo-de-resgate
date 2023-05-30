@@ -1,47 +1,65 @@
 #include "Game.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 Game::Game(){};
+Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
+    objetos = objetosDoJogo;
+};
 
 void Game::inicializar(){
-    std::ofstream arquivo("jogo.txt");
-
-    if (arquivo.is_open()) {
-        for(int i = 0; i < 40; i++){
-            if(i == 0 || i == 39){
-                for(int j = 1; j < 160; j++){
-                    arquivo << ' ';
-                    if(j == 159) arquivo << '\n';
-                }
-            }
-            else{
-                for(int j = 1; j < 160; j++){
-                    if(j == 1){
-                         arquivo << " ";
-                    }else if(j == 159){
-                        arquivo << " \n";
-                    } else{
-                        arquivo << ' ';
-                    }
-                }
-            }
+    for(int i=0; i < 10; i++){
+        for(int j=0; j < 100; j++){
+            tela[i][j] = ' ';
         }
-    } else {
-        std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
-    arquivo.close();
+    for(int i = 0; i < objetos.size(); i++){
+        ObjetoDoJogo obj = objetos[i];
+        desenhar(obj, obj.getX(), obj.getY());
+    }
 };
+
+void Game::mostrar(){
+    for(int i=0; i < 10; i++){
+        for(int j=0; j < 100; j++){
+            cout << tela[i][j];
+        }
+        cout<<endl;
+    }
+};
+
+void Game::atualizar(string cmd){
+    for(int i=0; i < 10; i++){
+        for(int j=0; j < 100; j++){
+            tela[i][j] = ' ';
+        }
+    }
+    for(int i = 0; i < objetos.size(); i++){
+        ObjetoDoJogo obj = objetos[i];
+        if(obj.getAtivo()){
+            obj.moveTo(cmd);
+        }
+        obj.atualizaSprite();
+        desenhar(obj, obj.getX(), obj.getY());
+        objetos[i] = obj;
+    }
+}
 
 void Game::desenhar(ObjetoDoJogo obj, int x, int y){
     int spriteAtual = obj.getSprites().getSpriteAtual();
     SpriteAnimado sprites = obj.getSprites();
-
-    string linha1 = sprites.getSprites()[spriteAtual].getSprite()[0];
-    string linha2 = sprites.getSprites()[spriteAtual].getSprite()[1];
-    string linha3 = sprites.getSprites()[spriteAtual].getSprite()[2];
-    cout << linha1 << endl;
-    cout << linha2 << endl;
-    cout << linha3 << endl;
+    
+    for(int linhaSprite = 0; linhaSprite < 3; linhaSprite++){//pego cada linha do sprite
+        string linha = sprites.getSprites()[spriteAtual].getSprite()[linhaSprite];
+        //itero o tamanho da linha do sprite, na hora de salvar o X será o índice da linha do sprite já que
+        //o mesmo possui 3 linhas de altura e o Y será o índice da iteração da largura da linha + o y, já que
+        //o sprite varia de largura basicamente
+        for(int indice = 0; indice < linha.length(); indice++){
+            //int linha = x+linhaSprite;
+            //int coluna = indice+y;
+            tela[x+linhaSprite][indice+y] = linha[indice]; 
+        }
+    }
 }

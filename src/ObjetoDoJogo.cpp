@@ -4,23 +4,26 @@
 
 ObjetoDoJogo::ObjetoDoJogo(){};
 
+ObjetoDoJogo::ObjetoDoJogo(int numX, int numY){
+    x = numX;
+    y = numY;
+};
+
 void ObjetoDoJogo::ativa(){ativo = true;};
 
 void ObjetoDoJogo::desativa(){ativo = false;};
 
-void ObjetoDoJogo::moveTo(){};
+void ObjetoDoJogo::moveTo(string lado){
+    if(lado == "d"){
+        y = y+1;
+    }
+    if(lado == "a"){
+        y = y-1;
+    }
+};
 
 void ObjetoDoJogo::atualizaSprite(){
-    if(sprites.getSpriteAtual() == 0){
-        sprites.trocarSpriteAtual();
-    }
-    else{
-        sprites.trocarSpriteAtual();
-    }
-}
-
-void ObjetoDoJogo::desenharSla(){
-    sprites.desenharNaTela(1, 2);
+    sprites.trocarSpriteAtual();
 }
 
 int ObjetoDoJogo::getX(){
@@ -33,4 +36,16 @@ int ObjetoDoJogo::getY(){
 
 SpriteAnimado ObjetoDoJogo::getSprites(){
     return sprites;
+}
+
+void ObjetoDoJogo::setX(int numero){
+    x = numero;
+}
+
+void ObjetoDoJogo::setY(int numero){
+    y = numero;
+}
+
+bool ObjetoDoJogo::getAtivo(){
+    return ativo;
 }
