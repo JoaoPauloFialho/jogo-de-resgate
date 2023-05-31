@@ -1,15 +1,17 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Sprite{
     private:
-        string sprite[3];
+        vector<string> linhas; //linhas do vetor
     public:
         Sprite();
-        string* getSprite();
-        void setSprites(string linha1, string linha2, string linha3);
+        Sprite(vector<string> linhasSalvar);
+        vector<string> getSprite();
+        void setSprites(vector<string> linhasSalvar);
 };
 
 #endif

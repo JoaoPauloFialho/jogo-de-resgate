@@ -2,17 +2,17 @@
 #define SPRITEANIMADO_H
 #include <iostream>
 #include "Sprite.h"
+#include <vector>
 
 class SpriteAnimado{
     private:
-        Sprite sprites[2];
+        vector<Sprite> sprites;
         int spriteAtual;
     public:
-        SpriteAnimado(Sprite sprite1, Sprite sprite2);
         SpriteAnimado();
-        void desenharNaTela(int x, int y);
-        void setSprites(Sprite lista[2]);
-        Sprite* getSprites();
+        SpriteAnimado(vector<Sprite> spritesSalvar);
+        void setSprites(vector<Sprite> spritesSalvar);
+        vector<Sprite> getSprites();
         int getSpriteAtual();
         void trocarSpriteAtual();
 };
