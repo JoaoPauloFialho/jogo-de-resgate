@@ -14,7 +14,7 @@ class SpriteAnimado{
         void setSprites(vector<Sprite> spritesSalvar);
         vector<Sprite> getSprites();
         int getSpriteAtual();
-        void trocarSpriteAtual();
+        void atualizarSpriteAtual();
 };
 
 #endif

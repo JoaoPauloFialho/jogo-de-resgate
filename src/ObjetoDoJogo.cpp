@@ -23,7 +23,7 @@ void ObjetoDoJogo::moveTo(string lado){
 };
 
 void ObjetoDoJogo::atualizaSprite(){
-    sprites.trocarSpriteAtual();
+    sprites.atualizarSpriteAtual();
 }
 
 int ObjetoDoJogo::getX(){

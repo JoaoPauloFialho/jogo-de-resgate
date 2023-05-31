@@ -20,7 +20,7 @@ void SpriteAnimado::setSprites(vector<Sprite> spritesSalvar){
     sprites.push_back(spritesSalvar[1]);
 };
 
-void SpriteAnimado::trocarSpriteAtual(){
+void SpriteAnimado::atualizarSpriteAtual(){
     if(spriteAtual == 1){
         spriteAtual = 0;
     }
