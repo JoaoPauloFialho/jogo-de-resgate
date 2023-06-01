@@ -6,7 +6,7 @@ class Helicoptero: public ObjetoDoJogo{
 private:
 public:
     Helicoptero();
-    Helicoptero(int numX, int numY);
+    Helicoptero(string caminhoDoArquivo ,int numX, int numY);
 };
 
 

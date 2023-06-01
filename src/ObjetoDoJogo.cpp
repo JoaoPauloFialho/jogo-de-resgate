@@ -1,10 +1,34 @@
+#include <vector>
 #include <iostream>
+#include <fstream>
 #include "ObjetoDoJogo.h"
 #include "SpriteAnimado.h"
+using namespace std;
 
 ObjetoDoJogo::ObjetoDoJogo(){};
 
-ObjetoDoJogo::ObjetoDoJogo(int numX, int numY){
+ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX, int numY){
+    ifstream arquivo(caminhoDoArquivo);
+
+    if (arquivo.is_open()) {
+        vector<Sprite> spritesSalvar;
+        vector<string> linhas;
+        string linha;
+
+        while (getline(arquivo, linha)) {
+            if(linha == "proxsprite" || linha == "fimsprite"){
+                Sprite spriteSalvar = Sprite(linhas);
+                linhas.clear();
+                spritesSalvar.push_back(spriteSalvar);
+            }else{
+                linhas.push_back(linha);
+            }
+        }
+        sprites = SpriteAnimado(spritesSalvar);
+        arquivo.close();
+    } else {
+        //lembrar de adicionar uma exceção aqui no futuro
+    }
     x = numX;
     y = numY;
 };
