@@ -8,3 +8,4 @@ g++ -o jogo -I include src/*cpp
 ```shell
 ./jogo
 ```
+# jogo-de-resgate-c-
