@@ -21,11 +21,11 @@ void SpriteAnimado::setSprites(vector<Sprite> spritesSalvar){
 };
 
 void SpriteAnimado::atualizarSpriteAtual(){
-    if(spriteAtual == 1){
+    if(spriteAtual == sprites.size()-1){
         spriteAtual = 0;
     }
     else{
-        spriteAtual = 1;
+        spriteAtual++;
     }
 }
 
