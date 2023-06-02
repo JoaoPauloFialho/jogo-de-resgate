@@ -10,14 +10,16 @@ SpriteAnimado::SpriteAnimado(){
 
 SpriteAnimado::SpriteAnimado(vector<Sprite> spritesSalvar){
     spriteAtual = 0;
-    sprites.push_back(spritesSalvar[0]);
-    sprites.push_back(spritesSalvar[1]);
+    for(int i = 0; i < spritesSalvar.size(); i ++){
+        sprites.push_back(spritesSalvar[i]);
+    }
 }
 
 void SpriteAnimado::setSprites(vector<Sprite> spritesSalvar){
     spriteAtual = 0;
-    sprites.push_back(spritesSalvar[0]);
-    sprites.push_back(spritesSalvar[1]);
+    for(int i = 0; i < spritesSalvar.size(); i ++){
+        sprites.push_back(spritesSalvar[i]);
+    }
 };
 
 void SpriteAnimado::atualizarSpriteAtual(){

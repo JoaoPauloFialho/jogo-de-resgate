@@ -10,7 +10,7 @@ Sprite::Sprite(vector<string> linhasSalvar){
         linhas.push_back(linhasSalvar[i]);
     }
 }
-vector<string> Sprite::getSprite(){ 
+vector<string> Sprite::getLinhas(){ 
     return linhas;
     };
     

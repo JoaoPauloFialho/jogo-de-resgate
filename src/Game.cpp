@@ -50,9 +50,10 @@ void Game::atualizar(string cmd){
 void Game::desenhar(ObjetoDoJogo obj, int x, int y){
     int spriteAtual = obj.getSprites().getSpriteAtual();
     SpriteAnimado sprites = obj.getSprites();
+    vector<string> linhasDoSprite = sprites.getSprites()[spriteAtual].getLinhas();
     
-    for(int linhaSprite = 0; linhaSprite < 3; linhaSprite++){//pego cada linha do sprite
-        string linha = sprites.getSprites()[spriteAtual].getSprite()[linhaSprite];
+    for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){//pego cada linha do sprite
+        string linha = linhasDoSprite[linhaSprite];
         //itero o tamanho da linha do sprite, na hora de salvar o X será o índice da linha do sprite já que
         //o mesmo possui 3 linhas de altura e o Y será o índice da iteração da largura da linha + o y, já que
         //o sprite varia de largura basicamente

@@ -22,7 +22,7 @@ ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX, int numY){
                 spritesSalvar.push_back(spriteSalvar);
             }else{
                 linhas.push_back(linha);
-            }
+            };
         }
         sprites = SpriteAnimado(spritesSalvar);
         arquivo.close();

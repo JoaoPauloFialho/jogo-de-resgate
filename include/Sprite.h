@@ -10,7 +10,7 @@ class Sprite{
     public:
         Sprite();
         Sprite(vector<string> linhasSalvar);
-        vector<string> getSprite();
+        vector<string> getLinhas();
         void setSprites(vector<string> linhasSalvar);
 };
 
