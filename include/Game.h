@@ -8,7 +8,7 @@ using namespace std;
 class Game{
     private:
         vector<ObjetoDoJogo> objetos;
-        string tela[10][100];
+        string tela[40][160];
     public:
         Game();
         Game(vector<ObjetoDoJogo> objetosDoJogo);

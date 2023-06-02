@@ -10,8 +10,8 @@ Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
 };
 
 void Game::inicializar(){
-    for(int i=0; i < 10; i++){
-        for(int j=0; j < 100; j++){
+    for(int i=0; i < 40; i++){
+        for(int j=0; j < 160; j++){
             tela[i][j] = ' ';
         }
     }
@@ -22,8 +22,8 @@ void Game::inicializar(){
 };
 
 void Game::mostrar(){
-    for(int i=0; i < 10; i++){
-        for(int j=0; j < 100; j++){
+    for(int i=0; i < 40; i++){
+        for(int j=0; j < 160; j++){
             cout << tela[i][j];
         }
         cout<<endl;
@@ -31,8 +31,8 @@ void Game::mostrar(){
 };
 
 void Game::atualizar(string cmd){
-    for(int i=0; i < 10; i++){
-        for(int j=0; j < 100; j++){
+    for(int i=0; i < 40; i++){
+        for(int j=0; j < 160; j++){
             tela[i][j] = ' ';
         }
     }
@@ -60,7 +60,7 @@ void Game::desenhar(ObjetoDoJogo obj, int x, int y){
         for(int indice = 0; indice < linha.length(); indice++){
             //int linha = x+linhaSprite;
             //int coluna = indice+y;
-            tela[x+linhaSprite][indice+y] = linha[indice]; 
+            tela[y+linhaSprite][x+indice] = linha[indice]; 
         }
     }
 }

@@ -8,6 +8,8 @@ protected:
     SpriteAnimado sprites;
     int x;
     int y;
+    int altura;
+    int largura;
     bool ativo;
 public:
     ObjetoDoJogo();
@@ -18,9 +20,11 @@ public:
     void ativa();
     void desativa();
     bool getAtivo();
-    int getX();
     void setX(int numero);
     void setY(int numero);
+    int getX();
+    int getAltura();
+    int getLargura();
     int getY();
     SpriteAnimado getSprites();
 };
