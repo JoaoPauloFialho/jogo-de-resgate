@@ -1,5 +1,5 @@
 # Jogo de resgate c++ (ainda em desenvolvimento)
-### Para jogar o jogo primeiro o compile executando no terminal o código
+### Para jogar o jogo primeiro o compile executando no terminal o código (Linux)
 ```shell
 g++ -o jogo -I include src/*cpp
 ```
