@@ -11,5 +11,13 @@ Helicoptero::Helicoptero(){
 
 Helicoptero::Helicoptero(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    ativo = true;
+    movel = true;
 };
+
+void Helicoptero::setCapacidade(int num){
+    capacidade = num;
+}
+
+int Helicoptero::getCapacidade(){
+    return capacidade;
+}

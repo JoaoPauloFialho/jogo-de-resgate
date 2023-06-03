@@ -10,20 +10,20 @@ Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
 };
 
 void Game::inicializar(){
-    for(int i=0; i < 40; i++){
-        for(int j=0; j < 160; j++){
+    for(int i=0; i < 30; i++){
+        for(int j=0; j < 50; j++){
             tela[i][j] = ' ';
         }
     }
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
-        desenhar(obj, obj.getX(), obj.getY());
+        desenhar(obj);
     }
 };
 
 void Game::mostrar(){
-    for(int i=0; i < 40; i++){
-        for(int j=0; j < 160; j++){
+    for(int i=0; i < 30; i++){
+        for(int j=0; j < 50; j++){
             cout << tela[i][j];
         }
         cout<<endl;
@@ -31,23 +31,35 @@ void Game::mostrar(){
 };
 
 void Game::atualizar(string cmd){
-    for(int i=0; i < 40; i++){
-        for(int j=0; j < 160; j++){
+    for(int i=0; i < 30; i++){
+        for(int j=0; j < 50; j++){
             tela[i][j] = ' ';
         }
     }
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
-        if(obj.getAtivo()){
-            obj.moveTo(cmd);
+        if(obj.getMovel()){
+            if(cmd == "x"){
+                for(int i = 0; i < objetos.size(); i++){
+                    ObjetoDoJogo objColisao = objetos[i];
+                    if(obj.colideComObjeto(objColisao)){
+                        //colidiu com alguma pessoa
+                    }
+                }
+            }else if(cmd == "p"){}else if(cmd == "q"){
+            }else{
+                obj.moveTo(cmd);
+            }
         }
         obj.atualizaSprite();
-        desenhar(obj, obj.getX(), obj.getY());
+        desenhar(obj);
         objetos[i] = obj;
     }
 }
 
-void Game::desenhar(ObjetoDoJogo obj, int x, int y){
+void Game::desenhar(ObjetoDoJogo obj){
+    int x = obj.getX();
+    int y = obj.getY();
     int spriteAtual = obj.getSprites().getSpriteAtual();
     SpriteAnimado sprites = obj.getSprites();
     vector<string> linhasDoSprite = sprites.getSprites()[spriteAtual].getLinhas();
@@ -62,5 +74,16 @@ void Game::desenhar(ObjetoDoJogo obj, int x, int y){
             //int coluna = indice+y;
             tela[y+linhaSprite][x+indice] = linha[indice]; 
         }
+    }
+}
+
+void Game::jogar(){
+    string andar;
+    inicializar();
+    while(1){
+        mostrar();
+        cin >> andar;
+        atualizar(andar);
+        //system("clear");
     }
 }

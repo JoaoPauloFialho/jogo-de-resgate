@@ -11,5 +11,5 @@ Pessoa::Pessoa(){
 
 Pessoa::Pessoa(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    ativo = false;
+    movel = false;
 };

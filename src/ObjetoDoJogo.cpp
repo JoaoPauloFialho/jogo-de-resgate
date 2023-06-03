@@ -36,6 +36,7 @@ ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX, int numY){
     }
     x = numX;
     y = numY;
+    ativo = true;
 };
 
 void ObjetoDoJogo::ativa(){ativo = true;};
@@ -43,52 +44,53 @@ void ObjetoDoJogo::ativa(){ativo = true;};
 void ObjetoDoJogo::desativa(){ativo = false;};
 
 void ObjetoDoJogo::moveTo(string lado){
-    if(lado == "s" && (y+altura+1) < 40){
-        y++;
-    }
-    if(lado == "w" && y > 0){
-        y--;
-    }
-    if(lado == "a" && x > 0 ){
-        x--;
-    }
-    if(lado == "d" && (x+largura+1) < 160){
-        x++;
-    }
+    if(lado == "s" && (y+altura+1) < 30) y++;
+    if(lado == "w" && y > 0) y--;
+    if(lado == "a" && x > 0 ) x--;
+    if(lado == "d" && (x+largura+1) < 50) x++;
 };
 
 void ObjetoDoJogo::atualizaSprite(){
     sprites.atualizarSpriteAtual();
-}
+};
+
+bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
+    if(x+(largura/2) == obj.x && y+(altura/2) == obj.y) return true;
+    return false;
+};
 
 void ObjetoDoJogo::setX(int numero){
     x = numero;
-}
+};
 
 void ObjetoDoJogo::setY(int numero){
     y = numero;
-}
+};
 
 int ObjetoDoJogo::getX(){
     return x;
-}
+};
 
 int ObjetoDoJogo::getY(){
     return y;
-}
+};
 
 SpriteAnimado ObjetoDoJogo::getSprites(){
     return sprites;
+};
+
+bool ObjetoDoJogo::getMovel(){
+    return movel;
 }
 
 bool ObjetoDoJogo::getAtivo(){
     return ativo;
-}
+};
 
 int ObjetoDoJogo::getAltura(){
     return altura;
-}
+};
 
 int ObjetoDoJogo::getLargura(){
     return largura;
-}
+};

@@ -11,10 +11,11 @@ protected:
     int altura;
     int largura;
     bool ativo;
+    bool movel;
 public:
     ObjetoDoJogo();
     ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);    
-    void colideComObjeto(ObjetoDoJogo obj){};
+    bool colideComObjeto(ObjetoDoJogo obj);
     void atualizaSprite();
     void moveTo(string lado);
     void ativa();
@@ -23,6 +24,7 @@ public:
     void setX(int numero);
     void setY(int numero);
     int getX();
+    bool getMovel();
     int getAltura();
     int getLargura();
     int getY();

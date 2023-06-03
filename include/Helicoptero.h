@@ -4,9 +4,12 @@
 
 class Helicoptero: public ObjetoDoJogo{
 private:
+    int capacidade;
 public:
     Helicoptero();
     Helicoptero(string caminhoDoArquivo ,int numX, int numY);
+    void setCapacidade(int num);
+    int getCapacidade();
 };
 
 

@@ -8,14 +8,15 @@ using namespace std;
 class Game{
     private:
         vector<ObjetoDoJogo> objetos;
-        string tela[40][160];
+        string tela[30][50];
     public:
         Game();
         Game(vector<ObjetoDoJogo> objetosDoJogo);
         void mostrar();
         void inicializar();
         void atualizar(string cmd);
-        void desenhar(ObjetoDoJogo obj,int x, int y);
+        void desenhar(ObjetoDoJogo obj);
+        void jogar();
 };
 
 #endif
