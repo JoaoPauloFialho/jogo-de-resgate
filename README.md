@@ -24,7 +24,7 @@ g++ -o jogo -I include src/*cpp
 ![imagem explicativa de como os sprites devem ser configurados](https://github.com/JoaoPauloFialho/imagens/blob/main/helicoptero.png)
 #### Cada sprite deverá ser digitado no arquivo .txt, quando chegar ao final de cada sprite escreva uma linha com a seguinte string "proxsprite", você pode desenhar quantos sprites quiser, desde que siga a risca essa  configuração de digitar "proxsprite" sempre que quiser digitar outro sprite. Ao final, quando tiver digitado todos os sprites na ultima linha do arquivo .txt escreva a linha "fimsprite"
 
-#### Depois é só instanciar a classe e passar o caminho do arquivo .txt dos sprites no construtor
+#### Depois é só instanciar a classe e passar o caminho do arquivo .txt dos sprites no construtor da entidade em questão
 
 ```c++
 Helicoptero hel("sprites/helicoptero.txt",0 , 0);
