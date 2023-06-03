@@ -10,6 +10,7 @@ Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
 };
 
 void Game::inicializar(){
+    executando = true;
     for(int i=0; i < 30; i++){
         for(int j=0; j < 50; j++){
             tela[i][j] = ' ';
@@ -46,7 +47,10 @@ void Game::atualizar(string cmd){
                         //colidiu com alguma pessoa
                     }
                 }
-            }else if(cmd == "p"){}else if(cmd == "q"){
+            }else if(cmd == "p"){
+
+            }else if(cmd == "q"){
+                executando = false;
             }else{
                 obj.moveTo(cmd);
             }
@@ -80,10 +84,11 @@ void Game::desenhar(ObjetoDoJogo obj){
 void Game::jogar(){
     string andar;
     inicializar();
-    while(1){
+    while(executando){
         mostrar();
         cin >> andar;
         atualizar(andar);
-        //system("clear");
+        system("clear");
     }
+    system("clear");
 }

@@ -9,6 +9,7 @@ class Game{
     private:
         vector<ObjetoDoJogo> objetos;
         string tela[30][50];
+        bool executando;
     public:
         Game();
         Game(vector<ObjetoDoJogo> objetosDoJogo);
