@@ -50,7 +50,7 @@ void ObjetoDoJogo::moveTo(string lado){
     if(lado == "d" && (x+largura+1) < 50) x++;
 };
 
-void ObjetoDoJogo::atualizaSprite(){
+void ObjetoDoJogo::atualiza(){
     sprites.atualizarSpriteAtual();
 };
 

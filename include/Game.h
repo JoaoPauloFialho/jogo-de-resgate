@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 #include "ObjetoDoJogo.h"
+#include "Base.h"
+#include "Helicoptero.h"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -8,7 +10,10 @@ using namespace std;
 class Game{
     private:
         vector<ObjetoDoJogo> objetos;
+        Base base;
+        Helicoptero helicoptero;
         string tela[30][50];
+        int qntdPessoasResgatadas;
         bool executando;
     public:
         Game();
@@ -16,7 +21,7 @@ class Game{
         void mostrar();
         void inicializar();
         void atualizar(string cmd);
-        void desenhar(ObjetoDoJogo obj);
+        void desenharEntidade(ObjetoDoJogo obj);
         void jogar();
 };
 

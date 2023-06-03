@@ -16,7 +16,7 @@ public:
     ObjetoDoJogo();
     ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);    
     bool colideComObjeto(ObjetoDoJogo obj);
-    void atualizaSprite();
+    void atualiza();
     void moveTo(string lado);
     void ativa();
     void desativa();

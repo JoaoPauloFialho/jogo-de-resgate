@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Helicoptero.h"
+#include "Base.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,11 +8,13 @@ using namespace std;
 
 Game::Game(){};
 Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
+    base = Base("sprites/base.txt", 0, 28);
+    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , 24);
     objetos = objetosDoJogo;
+    executando = true;
 };
 
 void Game::inicializar(){
-    executando = true;
     for(int i=0; i < 30; i++){
         for(int j=0; j < 50; j++){
             tela[i][j] = ' ';
@@ -18,8 +22,10 @@ void Game::inicializar(){
     }
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
-        desenhar(obj);
+        desenharEntidade(obj);
     }
+    desenharEntidade(base);
+    desenharEntidade(helicoptero);
 };
 
 void Game::mostrar(){
@@ -37,31 +43,45 @@ void Game::atualizar(string cmd){
             tela[i][j] = ' ';
         }
     }
-    for(int i = 0; i < objetos.size(); i++){
-        ObjetoDoJogo obj = objetos[i];
-        if(obj.getMovel()){
-            if(cmd == "x"){
-                for(int i = 0; i < objetos.size(); i++){
-                    ObjetoDoJogo objColisao = objetos[i];
-                    if(obj.colideComObjeto(objColisao)){
-                        //colidiu com alguma pessoa
-                    }
+    if(cmd == "x"){
+        for(int i = 0; i < objetos.size(); i++){
+            ObjetoDoJogo* objColisao = &objetos[i];
+            if(helicoptero.colideComObjeto(*objColisao)){ //* é operador de desreferência para que o valor seja a variável que o ponteiro aponta e não o ponteiro
+                objColisao->desativa();
+                helicoptero+*objColisao;
                 }
-            }else if(cmd == "p"){
-
-            }else if(cmd == "q"){
-                executando = false;
-            }else{
-                obj.moveTo(cmd);
+            }
+        if(helicoptero.getX() + helicoptero.getX() <= base.getX() + base.getLargura()){
+            if(helicoptero.getPessoasResgatadas().size() > 0){
+                ObjetoDoJogo pessoaResgatada = --helicoptero;
+                base+pessoaResgatada;
             }
         }
-        obj.atualizaSprite();
-        desenhar(obj);
+    }else if(cmd == "p"){
+
+    }else if(cmd == "q"){
+            executando = false;
+    }else{
+        helicoptero.moveTo(cmd);
+    }
+    base.atualiza();
+    helicoptero.atualiza();
+    desenharEntidade(base);
+    desenharEntidade(helicoptero);
+    for(int i = 0; i < objetos.size(); i++){
+        ObjetoDoJogo obj = objetos[i];
+        if(obj.getAtivo()){
+            obj.atualiza();
+            desenharEntidade(obj);
+        }
         objetos[i] = obj;
+    }
+    if(base.getPessoasResgatadas().size() == 2){
+        executando = false;
     }
 }
 
-void Game::desenhar(ObjetoDoJogo obj){
+void Game::desenharEntidade(ObjetoDoJogo obj){
     int x = obj.getX();
     int y = obj.getY();
     int spriteAtual = obj.getSprites().getSpriteAtual();
@@ -74,8 +94,6 @@ void Game::desenhar(ObjetoDoJogo obj){
         //o mesmo possui 3 linhas de altura e o Y será o índice da iteração da largura da linha + o y, já que
         //o sprite varia de largura basicamente
         for(int indice = 0; indice < linha.length(); indice++){
-            //int linha = x+linhaSprite;
-            //int coluna = indice+y;
             tela[y+linhaSprite][x+indice] = linha[indice]; 
         }
     }
