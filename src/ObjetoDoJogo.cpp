@@ -44,7 +44,7 @@ void ObjetoDoJogo::ativa(){ativo = true;};
 void ObjetoDoJogo::desativa(){ativo = false;};
 
 void ObjetoDoJogo::moveTo(string lado){
-    if(lado == "s" && (y+altura+1) < 30) y++;
+    if(lado == "s" && (y+altura+1) < 29) y++;
     if(lado == "w" && y > 0) y--;
     if(lado == "a" && x > 0 ) x--;
     if(lado == "d" && (x+largura+1) < 50) x++;

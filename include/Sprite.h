@@ -6,7 +6,7 @@ using namespace std;
 
 class Sprite{
     private:
-        vector<string> linhas; //linhas do vetor
+        vector<string> linhas;
     public:
         Sprite();
         Sprite(vector<string> linhasSalvar);

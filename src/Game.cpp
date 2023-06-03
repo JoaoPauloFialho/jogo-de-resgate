@@ -9,7 +9,7 @@ using namespace std;
 Game::Game(){};
 Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
     base = Base("sprites/base.txt", 0, 28);
-    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , 24);
+    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , 25);
     objetos = objetosDoJogo;
     executando = true;
 };
@@ -46,7 +46,7 @@ void Game::atualizar(string cmd){
     if(cmd == "x"){
         for(int i = 0; i < objetos.size(); i++){
             ObjetoDoJogo* objColisao = &objetos[i];
-            if(helicoptero.colideComObjeto(*objColisao)){ //* é operador de desreferência para que o valor seja a variável que o ponteiro aponta e não o ponteiro
+            if(helicoptero.colideComObjeto(*objColisao)){ 
                 objColisao->desativa();
                 helicoptero+*objColisao;
                 }
@@ -60,7 +60,7 @@ void Game::atualizar(string cmd){
     }else if(cmd == "p"){
 
     }else if(cmd == "q"){
-            executando = false;
+        executando = false;
     }else{
         helicoptero.moveTo(cmd);
     }
@@ -88,11 +88,8 @@ void Game::desenharEntidade(ObjetoDoJogo obj){
     SpriteAnimado sprites = obj.getSprites();
     vector<string> linhasDoSprite = sprites.getSprites()[spriteAtual].getLinhas();
     
-    for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){//pego cada linha do sprite
+    for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
         string linha = linhasDoSprite[linhaSprite];
-        //itero o tamanho da linha do sprite, na hora de salvar o X será o índice da linha do sprite já que
-        //o mesmo possui 3 linhas de altura e o Y será o índice da iteração da largura da linha + o y, já que
-        //o sprite varia de largura basicamente
         for(int indice = 0; indice < linha.length(); indice++){
             tela[y+linhaSprite][x+indice] = linha[indice]; 
         }
