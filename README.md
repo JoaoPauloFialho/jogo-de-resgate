@@ -8,6 +8,10 @@ g++ -o jogo -I include src/*cpp
 ```shell
 ./jogo
 ```
+
+# Estrutura do projeto (arquivos e pastas)
+![imagem explicativa de como os sprites devem ser configurados](https://github.com/JoaoPauloFialho/imagens/blob/main/Captura%20de%20tela%20de%202023-06-03%2020-27-25.png)
+
 # Estrutura do projeto (principais classes)
 
 ### Classe Game
