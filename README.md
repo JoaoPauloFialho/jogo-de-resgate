@@ -10,13 +10,13 @@ g++ -o jogo -I include src/*cpp
 ```
 # Estrutura do projeto (principais classes)
 
-## Classe Game
+### Classe Game
 #### a classe Game é a principal classe do jogo e nela existe as operações para que o jogo funcione basicamente
 
-## Classe ObjetoDoJogo
+### Classe ObjetoDoJogo
 #### classe responsável por encapsular as informações das entidades do jogo e controla-las
 
-## Classe SpriteAnimado
+### Classe SpriteAnimado
 #### classe responsável por ler e salvar os sprites utilizados pelas entidades do jogo
 
 # Configuração dos Sprites das entidades
