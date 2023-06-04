@@ -3,6 +3,7 @@
 #include <fstream>
 #include "ObjetoDoJogo.h"
 #include "SpriteAnimado.h"
+#include "constantes.h"
 using namespace std;
 
 ObjetoDoJogo::ObjetoDoJogo(){};
@@ -44,10 +45,10 @@ void ObjetoDoJogo::ativa(){ativo = true;};
 void ObjetoDoJogo::desativa(){ativo = false;};
 
 void ObjetoDoJogo::moveTo(string lado){
-    if(lado == "s" && (y+altura+1) < 29) y++;
-    if(lado == "w" && y > 0) y--;
+    if(lado == "s" && (y+altura+1) < jogo::YINICIALBASE+1) y++;//+1 pois quero que o helicoptero fique no mínimo
+    if(lado == "w" && y > 0) y--;                              //na altura da primeira linha da base (sobrepondo primeira linha)
     if(lado == "a" && x > 0 ) x--;
-    if(lado == "d" && (x+largura+1) < 50) x++;
+    if(lado == "d" && (x+largura+1) < jogo::LARGURAJOGO) x++;
 };
 
 void ObjetoDoJogo::atualiza(){

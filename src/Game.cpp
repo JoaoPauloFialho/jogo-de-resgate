@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Helicoptero.h"
 #include "Base.h"
+#include "constantes.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,15 +9,15 @@ using namespace std;
 
 Game::Game(){};
 Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
-    base = Base("sprites/base.txt", 0, 28);
-    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , 25);
+    base = Base("sprites/base.txt", 0, jogo::YINICIALBASE);
+    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , jogo::YINICIALHELICOPTERO);
     objetos = objetosDoJogo;
     executando = true;
 };
 
 void Game::inicializar(){
-    for(int i=0; i < 30; i++){
-        for(int j=0; j < 50; j++){
+    for(int i=0; i < jogo::ALTURAJOGO; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
             tela[i][j] = ' ';
         }
     }
@@ -29,8 +30,8 @@ void Game::inicializar(){
 };
 
 void Game::mostrar(){
-    for(int i=0; i < 30; i++){
-        for(int j=0; j < 50; j++){
+    for(int i=0; i < jogo::ALTURAJOGO; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
             cout << tela[i][j];
         }
         cout<<endl;
@@ -38,15 +39,17 @@ void Game::mostrar(){
 };
 
 void Game::atualizar(string cmd){
-    for(int i=0; i < 30; i++){
-        for(int j=0; j < 50; j++){
+    for(int i=0; i < jogo::ALTURAJOGO; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
             tela[i][j] = ' ';
         }
     }
     if(cmd == "x"){
         for(int i = 0; i < objetos.size(); i++){
             ObjetoDoJogo* objColisao = &objetos[i];
-            if(helicoptero.colideComObjeto(*objColisao)){ 
+            cout << helicoptero.getCapacidadeMax() << endl;
+            cout << helicoptero.getQntPessoas() << endl;
+            if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
                 objColisao->desativa();
                 helicoptero+*objColisao;
                 }
@@ -76,7 +79,7 @@ void Game::atualizar(string cmd){
         }
         objetos[i] = obj;
     }
-    if(base.getPessoasResgatadas().size() == 2){
+    if(base.getPessoasResgatadas().size() == jogo::PESSOASNIVELFACIL){
         executando = false;
     }
 }
@@ -103,7 +106,7 @@ void Game::jogar(){
         mostrar();
         cin >> andar;
         atualizar(andar);
-        system("clear");
+        //system("clear");
     }
     system("clear");
 }

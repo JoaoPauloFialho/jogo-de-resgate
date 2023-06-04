@@ -3,6 +3,7 @@
 #include "ObjetoDoJogo.h"
 #include "Base.h"
 #include "Helicoptero.h"
+#include "constantes.h"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -12,7 +13,7 @@ class Game{
         vector<ObjetoDoJogo> objetos;
         Base base;
         Helicoptero helicoptero;
-        string tela[30][50];
+        string tela[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
         int qntdPessoasResgatadas;
         bool executando;
     public:
