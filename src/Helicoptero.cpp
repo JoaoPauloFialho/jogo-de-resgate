@@ -13,7 +13,7 @@ Helicoptero::Helicoptero(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
     capacidadeMax = 2;
     qntPessoas = 0;
-    movel = true;
+    obstaculo = false;
 };
 
 void Helicoptero::operator+(ObjetoDoJogo pessoa){

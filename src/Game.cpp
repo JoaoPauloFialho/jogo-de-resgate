@@ -47,12 +47,12 @@ void Game::atualizar(string cmd){
     if(cmd == "x"){
         for(int i = 0; i < objetos.size(); i++){
             ObjetoDoJogo* objColisao = &objetos[i];
-            cout << helicoptero.getCapacidadeMax() << endl;
-            cout << helicoptero.getQntPessoas() << endl;
-            if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
-                objColisao->desativa();
-                helicoptero+*objColisao;
+            if(objColisao->getAtivo()){
+                if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
+                    objColisao->desativa();
+                    helicoptero+*objColisao;
                 }
+            }
             }
         if(helicoptero.getX() + helicoptero.getX() <= base.getX() + base.getLargura()){
             if(helicoptero.getPessoasResgatadas().size() > 0){
@@ -106,7 +106,7 @@ void Game::jogar(){
         mostrar();
         cin >> andar;
         atualizar(andar);
-        //system("clear");
+        system("clear");
     }
     system("clear");
 }

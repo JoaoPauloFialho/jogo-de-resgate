@@ -1,15 +1,14 @@
-#include "Pessoa.h"
+#include "Obstaculo.h"
 #include "ObjetoDoJogo.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-
-Pessoa::Pessoa(){
+Obstaculo::Obstaculo(){
 }
 
-Pessoa::Pessoa(string caminhoDoArquivo ,int numX, int numY)
+Obstaculo::Obstaculo(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
     obstaculo = false;
 };

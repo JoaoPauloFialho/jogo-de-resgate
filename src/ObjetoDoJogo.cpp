@@ -45,10 +45,10 @@ void ObjetoDoJogo::ativa(){ativo = true;};
 void ObjetoDoJogo::desativa(){ativo = false;};
 
 void ObjetoDoJogo::moveTo(string lado){
-    if(lado == "s" && (y+altura+1) < jogo::YINICIALBASE+1) y++;//+1 pois quero que o helicoptero fique no mínimo
-    if(lado == "w" && y > 0) y--;                              //na altura da primeira linha da base (sobrepondo primeira linha)
-    if(lado == "a" && x > 0 ) x--;
-    if(lado == "d" && (x+largura+1) < jogo::LARGURAJOGO) x++;
+    if(lado == "s" && (y+altura+1) < jogo::YINICIALBASE+1) y+= jogo::DESLOCAMENTO;//+1 pois quero que o helicoptero fique no mínimo
+    if(lado == "w" && y > 0) y-= jogo::DESLOCAMENTO;                              //na altura da primeira linha da base (sobrepondo primeira linha)
+    if(lado == "a" && x > 0 ) x-= jogo::DESLOCAMENTO;
+    if(lado == "d" && (x+largura+1) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO;
 };
 
 void ObjetoDoJogo::atualiza(){
@@ -80,8 +80,8 @@ SpriteAnimado ObjetoDoJogo::getSprites(){
     return sprites;
 };
 
-bool ObjetoDoJogo::getMovel(){
-    return movel;
+bool ObjetoDoJogo::getObstaculo(){
+    return obstaculo;
 }
 
 bool ObjetoDoJogo::getAtivo(){

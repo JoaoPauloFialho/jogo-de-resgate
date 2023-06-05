@@ -10,7 +10,7 @@ Base::Base(){
 
 Base::Base(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    movel = false;
+    obstaculo = false;
 };
 
 vector<ObjetoDoJogo> Base::getPessoasResgatadas(){
