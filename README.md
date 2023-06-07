@@ -11,7 +11,7 @@ g++ -o jogo -I include src/*cpp
 
 # Estrutura do projeto (arquivos e pastas)
 <div>
-<img src="https://github.com/JoaoPauloFialho/imagens/blob/main/pastas.png" alt="arquivos" align="left" width="240rem"/>
+<img src="https://github.com/JoaoPauloFialho/imagens/blob/main/pastas.png" alt="arquivos" align="left" width="250rem"/>
 <p>O projeto é organizado pelas pastas</p>
 <p>include -> arquivos .h com os headers (arquivos de declaração das classes e constantes)</p>
 <p>sprites -> sprites das entidades do jogo</p>
