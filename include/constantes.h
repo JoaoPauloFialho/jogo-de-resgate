@@ -11,7 +11,9 @@ namespace jogo{
     const int ALTURAHELICOPTERO = 3;
     const int ALTURABASE = 2;
     const int YINICIALHELICOPTERO = ALTURAJOGO-ALTURABASE-ALTURAHELICOPTERO;
+    const int XINICIALHELICOPTERO = 0;
     const int YINICIALBASE = ALTURAJOGO-ALTURABASE;
+    const int XINICIALBASE = 0;
 }
 
 #endif

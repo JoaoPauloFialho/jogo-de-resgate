@@ -9,8 +9,8 @@ using namespace std;
 
 Game::Game(){};
 Game::Game(vector<ObjetoDoJogo> objetosDoJogo){
-    base = Base("sprites/base.txt", 0, jogo::YINICIALBASE);
-    helicoptero = Helicoptero("sprites/helicoptero.txt",0 , jogo::YINICIALHELICOPTERO);
+    base = Base("sprites/base.txt", jogo::XINICIALBASE, jogo::YINICIALBASE);
+    helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
     objetos = objetosDoJogo;
     executando = true;
 };
@@ -47,7 +47,7 @@ void Game::atualizar(string cmd){
     if(cmd == "x"){
         for(int i = 0; i < objetos.size(); i++){
             ObjetoDoJogo* objColisao = &objetos[i];
-            if(objColisao->getAtivo()){
+            if(!objColisao->getObstaculo()){
                 if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
                     objColisao->desativa();
                     helicoptero+*objColisao;
@@ -66,6 +66,12 @@ void Game::atualizar(string cmd){
         executando = false;
     }else{
         helicoptero.moveTo(cmd);
+        for(int i = 0; i < objetos.size(); i++){
+            ObjetoDoJogo obj = objetos[i];
+            if(helicoptero.colideComObjeto(obj) && obj.getObstaculo()){
+                executando = false;
+            }
+        }
     }
     base.atualiza();
     helicoptero.atualiza();

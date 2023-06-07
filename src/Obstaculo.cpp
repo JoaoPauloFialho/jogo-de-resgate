@@ -10,5 +10,5 @@ Obstaculo::Obstaculo(){
 
 Obstaculo::Obstaculo(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    obstaculo = false;
+    obstaculo = true;
 };
