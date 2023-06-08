@@ -1,14 +1,15 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef FASE_H
+#define FASE_H
 #include "ObjetoDoJogo.h"
 #include "Base.h"
+#include "Sprite.h"
 #include "Helicoptero.h"
 #include "constantes.h"
 #include <vector>
 #include <iostream>
 using namespace std;
 
-class Game{
+class Fase{
     private:
         vector<ObjetoDoJogo> objetos;
         Base base;
@@ -17,12 +18,13 @@ class Game{
         int qntdPessoasResgatadas;
         bool executando;
     public:
-        Game();
-        Game(vector<ObjetoDoJogo> objetosDoJogo);
+        Fase();
+        Fase(vector<ObjetoDoJogo> objetosDoJogo);
         void mostrar();
         void inicializar();
-        void atualizar(string cmd);
+        void atualizar();
         void desenharEntidade(ObjetoDoJogo obj);
+        void desenharEntidade(int y, int x, Sprite obj);
         void jogar();
 };
 

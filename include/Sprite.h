@@ -5,7 +5,7 @@
 using namespace std;
 
 class Sprite{
-    private:
+    protected:
         vector<string> linhas;
     public:
         Sprite();

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#include "Game.h"
+#include "Fase.h"
 #include "SpriteAnimado.h"
 #include "Pessoa.h"
 #include "Obstaculo.h"
@@ -20,7 +20,7 @@ int main() {
     objetosDoJogo.push_back(obs);
     objetosDoJogo.push_back(pes1);
     objetosDoJogo.push_back(pes2);
-    Game game = Game(objetosDoJogo);
-    game.jogar();
+    Fase fase = Fase(objetosDoJogo);
+    fase.jogar();
     return 0;
 }

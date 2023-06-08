@@ -38,7 +38,6 @@ ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX, int numY){
     x = numX;
     y = numY;
     ativo = true;
-    //obstaculo = true;
 };
 
 void ObjetoDoJogo::ativa(){ativo = true;};
@@ -55,30 +54,13 @@ void ObjetoDoJogo::moveTo(string lado){
 void ObjetoDoJogo::atualiza(){
     sprites.atualizarSpriteAtual();
 };
-//1 s            z   
-//2 s          s z   
-//3 s z        s z     
-//4 s z        s z     
-//5              z
-//6
-//7
 
 bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
-    //        y <= obj.y <= y + altura (primeiro caso de colisão)
-    //        obj.y  <= y <= obj.y + obj.altura
     if((obj.getY() >= y && obj.getY() <= y+altura) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
         if((obj.getX() >= x && obj.getX() <= x+largura) || (x >= obj.getX() && x<= obj.getX() + obj.getLargura())){
-            return true;
-        }
-    } 
-        
-    //basicamente checo se o x <= obj.x <= x+largura e y <= obj.y <= y+largura
-    //basicamente checo se o obj.x <= x <= obj.x+obj.largura
-    //isso aqui só funciona para objetos menores que o helicoptero
-    //if(
-    //    (obj.getY() >= y && obj.getY() <= y+altura && x <= obj.getX() && obj.getX() <= x+largura)||
-    //    (obj.getY() <= y && obj.getY()+obj.getAltura() <= y && obj.getX() <= x && obj.getX()+obj.getLargura() <= x )
-    //) return true;
+            return true; //tem 2 ifs pois eu preciso checar se o obj1 está sobre o obj2 ou se o obj2 está sobre obj1
+        }                //isso acontece pois tem essas 2 possibilidades para que o obj de analise esteja colidindo
+    }                    //com o outro
     return false;
 };
 
