@@ -1,8 +1,9 @@
 #ifndef OBJETODOJOGO_H
 #define OBJETODOJOGO_H
 #include "SpriteAnimado.h"
+#include "GameBase.h"
 
-class ObjetoDoJogo
+class ObjetoDoJogo: public GameBase
 {
 protected:
     SpriteAnimado sprites;
@@ -16,7 +17,8 @@ public:
     ObjetoDoJogo();
     ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);    
     bool colideComObjeto(ObjetoDoJogo obj);
-    void atualiza();
+    void atualizar() override;
+    void inicializar() override;
     void moveTo(string lado);
     void ativa();
     void desativa();

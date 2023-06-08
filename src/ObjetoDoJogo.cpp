@@ -51,9 +51,11 @@ void ObjetoDoJogo::moveTo(string lado){
     if(lado == "d" && (x+largura+1) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO;
 };
 
-void ObjetoDoJogo::atualiza(){
-    sprites.atualizarSpriteAtual();
+void ObjetoDoJogo::atualizar(){
+    sprites.atualizar();
 };
+
+void ObjetoDoJogo::inicializar(){};
 
 bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
     if((obj.getY() >= y && obj.getY() <= y+altura) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){

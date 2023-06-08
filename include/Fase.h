@@ -5,11 +5,12 @@
 #include "Sprite.h"
 #include "Helicoptero.h"
 #include "constantes.h"
+#include "GameBase.h"
 #include <vector>
 #include <iostream>
 using namespace std;
 
-class Fase{
+class Fase: public GameBase{
     private:
         vector<ObjetoDoJogo> objetos;
         Base base;
@@ -21,8 +22,8 @@ class Fase{
         Fase();
         Fase(vector<ObjetoDoJogo> objetosDoJogo);
         void mostrar();
-        void inicializar();
-        void atualizar();
+        void inicializar() override;
+        void atualizar() override;
         void desenharEntidade(ObjetoDoJogo obj);
         void desenharEntidade(int y, int x, Sprite obj);
         void jogar();

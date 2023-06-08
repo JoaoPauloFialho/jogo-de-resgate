@@ -22,7 +22,7 @@ void SpriteAnimado::setSprites(vector<Sprite> spritesSalvar){
     }
 };
 
-void SpriteAnimado::atualizarSpriteAtual(){
+void SpriteAnimado::atualizar(){
     if(spriteAtual == sprites.size()-1){
         spriteAtual = 0;
     }
@@ -30,6 +30,8 @@ void SpriteAnimado::atualizarSpriteAtual(){
         spriteAtual++;
     }
 }
+
+void SpriteAnimado::inicializar(){};
 
 int SpriteAnimado::getSpriteAtual(){
     return spriteAtual;

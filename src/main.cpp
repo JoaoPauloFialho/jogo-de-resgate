@@ -4,6 +4,7 @@
 #include "Fase.h"
 #include "SpriteAnimado.h"
 #include "Pessoa.h"
+#include "GameBase.h"
 #include "Obstaculo.h"
 #include "Sprite.h"
 #include "Base.h"

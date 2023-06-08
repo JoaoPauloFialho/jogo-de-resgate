@@ -45,14 +45,14 @@ void Fase::atualizar(){
             tela[i][j] = ' ';
         }
     }
-    base.atualiza();
-    helicoptero.atualiza();
+    base.atualizar();
+    helicoptero.atualizar();
     desenharEntidade(base);
     desenharEntidade(helicoptero);
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
         if(obj.getAtivo()){
-            obj.atualiza();
+            obj.atualizar();
             desenharEntidade(obj);
         }
         objetos[i] = obj;

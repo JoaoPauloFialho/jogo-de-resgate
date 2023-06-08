@@ -2,9 +2,10 @@
 #define SPRITEANIMADO_H
 #include <iostream>
 #include "Sprite.h"
+#include "GameBase.h"
 #include <vector>
 
-class SpriteAnimado{
+class SpriteAnimado: public GameBase{
     private:
         vector<Sprite> sprites;
         int spriteAtual;
@@ -14,7 +15,8 @@ class SpriteAnimado{
         void setSprites(vector<Sprite> spritesSalvar);
         vector<Sprite> getSprites();
         int getSpriteAtual();
-        void atualizarSpriteAtual();
+        void atualizar() override;
+        void inicializar() override;
 };
 
 #endif
