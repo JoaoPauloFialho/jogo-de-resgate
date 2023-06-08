@@ -1,6 +1,5 @@
 #include "Fase.h"
 #include "Helicoptero.h"
-#include "SpriteMensagemPause.h"
 #include "Base.h"
 #include "constantes.h"
 #include <iostream>
