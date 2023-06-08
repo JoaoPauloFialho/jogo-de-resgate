@@ -30,6 +30,7 @@ void Fase::inicializar(){
     desenharEntidade(helicoptero);
 };
 
+
 void Fase::mostrar(){
     for(int i=0; i < jogo::ALTURAJOGO; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
@@ -50,12 +51,11 @@ void Fase::atualizar(){
     desenharEntidade(base);
     desenharEntidade(helicoptero);
     for(int i = 0; i < objetos.size(); i++){
-        ObjetoDoJogo obj = objetos[i];
-        if(obj.getAtivo()){
-            obj.atualizar();
-            desenharEntidade(obj);
+        ObjetoDoJogo *obj = &objetos[i];
+        if(obj->getAtivo()){
+            obj->atualizar();
+            desenharEntidade(*obj);
         }
-        objetos[i] = obj;
     }
     if(base.getPessoasResgatadas().size() == jogo::PESSOASNIVELFACIL){
         executando = false;
