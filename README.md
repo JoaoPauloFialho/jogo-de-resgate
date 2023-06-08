@@ -1,4 +1,4 @@
-# Jogo de resgate c++ Linux(ainda em desenvolvimento)
+# Jogo de resgate c++ Linux (ainda em desenvolvimento)
 ### Para jogar o jogo primeiro o compile executando no terminal o código (Linux)
 ```shell
 g++ -o jogo -I include src/*cpp
