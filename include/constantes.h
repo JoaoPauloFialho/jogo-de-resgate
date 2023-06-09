@@ -2,9 +2,11 @@
 #define CONSTANTES_H
 
 namespace jogo{
-    const int LARGURAJOGO = 140;
     const int DESLOCAMENTO = 1;
+    const int LARGURAJOGO = 140;
+    const int LARGURATELA = 141;
     const int ALTURAJOGO = 30;
+    const int ALTURATELA = 35;
     const int PESSOASNIVELFACIL = 2;
     const int PESSOASNIVELMEDIO = 4;
     const int PESSOASNIVELDIFICIL = 6;

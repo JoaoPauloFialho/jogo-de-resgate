@@ -1,6 +1,7 @@
 #include "Fase.h"
 #include "Helicoptero.h"
 #include "Base.h"
+#include "SpriteAnimado.h"
 #include "constantes.h"
 #include <iostream>
 #include <fstream>
@@ -11,6 +12,7 @@ Fase::Fase(){};
 Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo){
     base = Base("sprites/base.txt", jogo::XINICIALBASE, jogo::YINICIALBASE);
     helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
+    background = SpriteAnimado("sprites/background1.txt");
     objetos = objetosDoJogo;
     executando = true;
 };
@@ -21,12 +23,13 @@ void Fase::inicializar(){
             tela[i][j] = ' ';
         }
     }
+    desenhar(1,1,background.getSpriteAtual());
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
-        desenharEntidade(obj);
+        desenhar(obj);
     }
-    desenharEntidade(base);
-    desenharEntidade(helicoptero);
+    desenhar(base);
+    desenhar(helicoptero);
 };
 
 
@@ -47,13 +50,15 @@ void Fase::atualizar(){
     }
     base.atualizar();
     helicoptero.atualizar();
-    desenharEntidade(base);
-    desenharEntidade(helicoptero);
+    background.atualizar();
+    desenhar(1,1,background.getSpriteAtual());
+    desenhar(base);
+    desenhar(helicoptero);
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo *obj = &objetos[i];
         if(obj->getAtivo()){
             obj->atualizar();
-            desenharEntidade(*obj);
+            desenhar(*obj);
         }
     }
     if(base.getPessoasResgatadas().size() == jogo::PESSOASNIVELFACIL){
@@ -61,12 +66,11 @@ void Fase::atualizar(){
     }
 }
 
-void Fase::desenharEntidade(ObjetoDoJogo obj){
+void Fase::desenhar(ObjetoDoJogo obj){
     int x = obj.getX();
     int y = obj.getY();
-    int spriteAtual = obj.getSprites().getSpriteAtual();
     SpriteAnimado sprites = obj.getSprites();
-    vector<string> linhasDoSprite = sprites.getSprites()[spriteAtual].getLinhas();
+    vector<string> linhasDoSprite = sprites.getSpriteAtual().getLinhas();
     
     for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
         string linha = linhasDoSprite[linhaSprite];
@@ -76,15 +80,13 @@ void Fase::desenharEntidade(ObjetoDoJogo obj){
     }
 }
 
-void Fase::desenharEntidade(int y, int x,Sprite spr){
+void Fase::desenhar(int y, int x,Sprite spr){
     vector<string> linhasDoSprite = spr.getLinhas();
-    
     for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
-        string linha = linhasDoSprite[linhaSprite];
-        cout << linha << endl;
-        for(int indice = 0; indice < linha.length(); indice++){
-            tela[y+linhaSprite][x+indice] = linha[indice]; 
-        }
+       string linha = linhasDoSprite[linhaSprite];
+       for(int indice = 0; indice < linha.length(); indice++){
+           tela[y+linhaSprite][x+indice] = linha[indice]; 
+       }
     }
 }
 

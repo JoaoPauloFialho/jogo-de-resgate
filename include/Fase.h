@@ -15,6 +15,7 @@ class Fase: public GameBase{
         vector<ObjetoDoJogo> objetos;
         Base base;
         Helicoptero helicoptero;
+        SpriteAnimado background;
         string tela[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
         int qntdPessoasResgatadas;
         bool executando;
@@ -24,8 +25,8 @@ class Fase: public GameBase{
         void mostrar();
         void inicializar() override;
         void atualizar() override;
-        void desenharEntidade(ObjetoDoJogo obj);
-        void desenharEntidade(int y, int x, Sprite obj);
+        void desenhar(ObjetoDoJogo obj);
+        void desenhar(int y, int x, Sprite obj);
         void jogar();
 };
 
