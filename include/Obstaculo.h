@@ -7,6 +7,7 @@ class Obstaculo: public ObjetoDoJogo{
 public:
     Obstaculo();
     Obstaculo(string caminhoDoArquivo ,int numX, int numY);
+    Obstaculo(string caminhoDoArquivo ,int numX);
 };
 
 #endif

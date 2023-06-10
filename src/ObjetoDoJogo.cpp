@@ -17,6 +17,15 @@ ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX, int numY){
     ativo = true;
 };
 
+ObjetoDoJogo::ObjetoDoJogo(string caminhoDoArquivo,int numX){
+    sprites = SpriteAnimado(caminhoDoArquivo);
+    largura = sprites.getLargura();
+    altura = sprites.getAltura();
+    x = numX;
+    y = jogo::ALTURAJOGO-sprites.getAltura();
+    ativo = true;
+};
+
 void ObjetoDoJogo::ativa(){ativo = true;};
 
 void ObjetoDoJogo::desativa(){ativo = false;};
@@ -35,7 +44,7 @@ void ObjetoDoJogo::atualizar(){
 void ObjetoDoJogo::inicializar(){};
 
 bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
-    if((obj.getY() >= y && obj.getY() <= y+altura) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
+    if((obj.getY() >= y && obj.getY() <= y+altura-1) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
         if((obj.getX() >= x && obj.getX() <= x+largura) || (x >= obj.getX() && x<= obj.getX() + obj.getLargura())){
             return true; //tem 2 ifs pois eu preciso checar se o obj1 está sobre o obj2 ou se o obj2 está sobre obj1
         }                //isso acontece pois tem essas 2 possibilidades para que o obj de analise esteja colidindo

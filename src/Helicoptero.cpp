@@ -11,7 +11,7 @@ Helicoptero::Helicoptero(){
 
 Helicoptero::Helicoptero(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    capacidadeMax = 2;
+    capacidadeMax = 4;
     qntPessoas = 0;
     obstaculo = false;
 };

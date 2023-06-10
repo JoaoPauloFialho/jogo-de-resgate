@@ -41,7 +41,7 @@ SpriteAnimado::SpriteAnimado(string caminhoDoArquivo){
             }
             sprites = spritesSalvar;
             largura = larguraSprite;
-            altura = sprites[sprites.size()-1].getLinhas().size()-1;
+            altura = sprites[sprites.size()-1].getLinhas().size();
             arquivo.close();
         };
     }catch(const exception& e){

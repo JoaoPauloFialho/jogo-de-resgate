@@ -13,3 +13,8 @@ Pessoa::Pessoa(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
     obstaculo = false;
 };
+
+Pessoa::Pessoa(string caminhoDoArquivo ,int numX)
+:ObjetoDoJogo(caminhoDoArquivo, numX){
+    obstaculo = false;
+};

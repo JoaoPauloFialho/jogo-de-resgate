@@ -15,7 +15,8 @@ protected:
     bool obstaculo;
 public:
     ObjetoDoJogo();
-    ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);    
+    ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);
+    ObjetoDoJogo(string caminhoDoArquivo, int numX);    
     bool colideComObjeto(ObjetoDoJogo obj);
     void atualizar() override;
     void inicializar() override;

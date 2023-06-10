@@ -7,6 +7,7 @@ class Pessoa: public ObjetoDoJogo{
 public:
     Pessoa();
     Pessoa(string caminhoDoArquivo ,int numX, int numY);
+    Pessoa(string caminhoDoArquivo ,int numX);
 };
 
 #endif
