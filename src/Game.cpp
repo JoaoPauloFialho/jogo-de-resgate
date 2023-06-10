@@ -1,6 +1,7 @@
 #include "Fase.h"
 #include "SpriteAnimado.h"
 #include "Pessoa.h"
+#include "Item.h"
 #include "GameBase.h"
 #include "Obstaculo.h"
 #include "Sprite.h"
@@ -23,6 +24,7 @@ void Game::rodar(){
         cin >> escolha;
         if(escolha == 1){
             vector<ObjetoDoJogo> objetosDoJogo;
+            Item fuel("sprites/fuel.txt", 20, 20);
             Obstaculo obs("sprites/predio1.txt",40);
             Obstaculo carro("sprites/carro1.txt", 79);
             Obstaculo fogo1("sprites/fogo.txt", 82, jogo::ALTURAJOGO-carro.getAltura()-2);
@@ -36,6 +38,7 @@ void Game::rodar(){
             Obstaculo fogo5("sprites/fogo.txt", 120, jogo::ALTURAJOGO-onibus.getAltura()-3);
             Obstaculo fogo6("sprites/fogo.txt", 124);
             objetosDoJogo.push_back(obs);
+            objetosDoJogo.push_back(fuel);
             objetosDoJogo.push_back(carro);
             objetosDoJogo.push_back(fogo1);
             objetosDoJogo.push_back(fogo2);

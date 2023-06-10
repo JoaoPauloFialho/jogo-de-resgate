@@ -9,8 +9,9 @@ namespace jogo{
     const int PESSOASNIVELFACIL = 3;
     const int PESSOASNIVELMEDIO = 4;
     const int PESSOASNIVELDIFICIL = 6;
+    const int BONUSITEM = 100;
     const int ALTURAHELICOPTERO = 3;
-    const int COMBUSTIVELMAX = 500;
+    const double COMBUSTIVELMAX = 500.0;
     const int CAPACIDADEPESSOASHELICOPTERO = 4;
     const int ALTURABASE = 2;
     const int YINICIALHELICOPTERO = ALTURAJOGO-ALTURABASE-ALTURAHELICOPTERO+1;

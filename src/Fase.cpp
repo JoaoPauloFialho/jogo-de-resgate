@@ -1,11 +1,14 @@
 #include "Fase.h"
+#include "utils.h"
 #include "Helicoptero.h"
 #include "Base.h"
 #include "SpriteAnimado.h"
 #include "constantes.h"
+#include "Item.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <iomanip>
 using namespace std;
 
 Fase::Fase(){};
@@ -29,14 +32,28 @@ void Fase::inicializar(){
                 if(j > 0 && j < 5){
                     secaoInformacoes[i][j] = ' ';
                 }else if(j == 5){
-                    secaoInformacoes[i][j] = "Combustivel "+to_string(helicoptero.getCombustivel());
+                    //construção da barra de combustivel a partir da porcentagem atual do combustivel
+                    string barraCombustivel = "";
+                    int quantidadeBarra = util::calcularPorcentagem(helicoptero.getCombustivel(), helicoptero.getCombustivelMax())/10;
+                    for(int i = 0; i < 10; i++){
+                        if(i >= 0 && i < quantidadeBarra){
+                            barraCombustivel.push_back('=');
+                        }
+                        else{
+                            barraCombustivel.push_back('-');
+                        }
+                    }
+                    for(int i = 0; i < 10 ; i++){
+                        
+                    }
+                    secaoInformacoes[i][j] = "Combustivel " + barraCombustivel;
                 }else if(j == 6){
                     secaoInformacoes[i][j] = "   Pessoas Resgatadas "
                                             +to_string(base.getPessoasResgatadas().size())
                                             +"/"
                                             +to_string(jogo::PESSOASNIVELFACIL);
                 }else if(j == 7){
-                    secaoInformacoes[i][j] = "   Capacidade"
+                    secaoInformacoes[i][j] = "   Capacidade "
                                             +to_string(helicoptero.getQntPessoas())
                                             +"/"
                                             +to_string(helicoptero.getCapacidadeMax());
@@ -69,6 +86,7 @@ void Fase::mostrar(){
         }
         cout<<endl;
     }
+    //jogo
     for(int i=0; i < jogo::ALTURAJOGO; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
             cout << secaoJogo[i][j];
@@ -89,7 +107,21 @@ void Fase::atualizar(){
                 if(j > 0 && j < 5){
                     secaoInformacoes[i][j] = ' ';
                 }else if(j == 5){
-                    secaoInformacoes[i][j] = "Combustivel "+to_string(helicoptero.getCombustivel());
+                    //construção da barra de combustivel a partir da porcentagem atual do combustivel
+                    string barraCombustivel = "";
+                    int quantidadeBarra = util::calcularPorcentagem(helicoptero.getCombustivel(), helicoptero.getCombustivelMax())/10;
+                    for(int i = 0; i < 10; i++){
+                        if(i >= 0 && i < quantidadeBarra){
+                            barraCombustivel.push_back('=');
+                        }
+                        else{
+                            barraCombustivel.push_back('-');
+                        }
+                    }
+                    for(int i = 0; i < 10 ; i++){
+                        
+                    }
+                    secaoInformacoes[i][j] = "Combustivel " + barraCombustivel;
                 }else if(j == 6){
                     secaoInformacoes[i][j] = "   Pessoas Resgatadas "
                                             +to_string(base.getPessoasResgatadas().size())
@@ -122,6 +154,12 @@ void Fase::atualizar(){
         if(obj->getAtivo()){
             obj->atualizar();
             desenhar(*obj);
+            if(obj->getItem()){
+                if(helicoptero.colideComObjeto(*obj)){
+                    helicoptero.abastece(jogo::BONUSITEM);
+                    obj->desativa();
+                }
+            }
         }
     }
     if(base.getPessoasResgatadas().size() == jogo::PESSOASNIVELFACIL){
@@ -184,6 +222,9 @@ void Fase::jogar(){
             helicoptero.moveTo(cmd);
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo obj = objetos[i];
+                if(helicoptero.getCombustivel() < 1){
+                    executando = false;
+                }
                 if(helicoptero.colideComObjeto(obj) && obj.getObstaculo()){
                     executando = false;
                 }

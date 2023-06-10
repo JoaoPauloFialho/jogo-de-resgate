@@ -7,16 +7,19 @@ class Helicoptero: public ObjetoDoJogo{
 private:
     int capacidadeMax;
     int qntPessoas;
-    int combustivel;
+    float combustivel;
+    float combustivelMax;
     vector<ObjetoDoJogo> pessoasResgatadas;
 public:
     Helicoptero();
     Helicoptero(string caminhoDoArquivo ,int numX, int numY);
     int getQntPessoas();
     int getCapacidadeMax();
-    int getCombustivel();
+    float getCombustivel();
+    float getCombustivelMax();
     void atualizar() override;
     void operator+(ObjetoDoJogo pessoa);
+    void abastece(int qnt);
     ObjetoDoJogo operator--();
     vector<ObjetoDoJogo> getPessoasResgatadas();
 };

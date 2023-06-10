@@ -13,6 +13,7 @@ protected:
     int largura;
     bool ativo;
     bool obstaculo;
+    bool item;
 public:
     ObjetoDoJogo();
     ObjetoDoJogo(string caminhoDoArquivo, int numX, int numY);
@@ -23,11 +24,12 @@ public:
     void moveTo(string lado);
     void ativa();
     void desativa();
-    bool getAtivo();
     void setX(int numero);
     void setY(int numero);
     int getX();
+    bool getAtivo();
     bool getObstaculo();
+    bool getItem();
     int getAltura();
     int getLargura();
     int getY();
