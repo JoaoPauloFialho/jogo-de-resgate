@@ -16,7 +16,8 @@ class Fase: public GameBase{
         Base base;
         Helicoptero helicoptero;
         SpriteAnimado background;
-        string tela[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
+        string secaoInformacoes[jogo::ALTURASECAOINFORMACOES][jogo::LARGURAJOGO];
+        string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
         int qntdPessoasResgatadas;
         bool executando;
     public:

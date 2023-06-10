@@ -7,7 +7,6 @@ using namespace std;
   
 class Game: public GameBase{
     private:
-        string tela[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
     public:
         Game();
         void atualizar() override;

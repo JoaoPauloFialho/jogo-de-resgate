@@ -18,9 +18,37 @@ Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo){
 };
 
 void Fase::inicializar(){
+    //informações
+    for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
+            if(i==0){
+                secaoInformacoes[i][j] = '~';
+            }else if(i == jogo::ALTURASECAOINFORMACOES-1){
+                secaoInformacoes[i][j] = '~';
+            }else{
+                if(j > 0 && j < 5){
+                    secaoInformacoes[i][j] = ' ';
+                }else if(j == 5){
+                    secaoInformacoes[i][j] = "Combustivel "+to_string(helicoptero.getCombustivel());
+                }else if(j == 6){
+                    secaoInformacoes[i][j] = "   Pessoas Resgatadas "
+                                            +to_string(base.getPessoasResgatadas().size())
+                                            +"/"
+                                            +to_string(jogo::PESSOASNIVELFACIL);
+                }else if(j == 7){
+                    secaoInformacoes[i][j] = "   Capacidade"
+                                            +to_string(helicoptero.getQntPessoas())
+                                            +"/"
+                                            +to_string(helicoptero.getCapacidadeMax());
+                }
+            }
+        }
+    }
+
+    //jogo
     for(int i=0; i < jogo::ALTURAJOGO; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
-            tela[i][j] = ' ';
+            secaoJogo[i][j] = ' ';
         }
     }
     desenhar(1,1,background.getSpriteAtual());
@@ -34,18 +62,53 @@ void Fase::inicializar(){
 
 
 void Fase::mostrar(){
+    //informações
+    for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
+            cout << secaoInformacoes[i][j]; 
+        }
+        cout<<endl;
+    }
     for(int i=0; i < jogo::ALTURAJOGO; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
-            cout << tela[i][j];
+            cout << secaoJogo[i][j];
         }
         cout<<endl;
     }
 };
 
 void Fase::atualizar(){
+    //informações
+    for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
+        for(int j=0; j < jogo::LARGURAJOGO; j++){
+            if(i==0){
+                secaoInformacoes[i][j] = '~';
+            }else if(i == jogo::ALTURASECAOINFORMACOES-1){
+                secaoInformacoes[i][j] = '~';
+            }else{
+                if(j > 0 && j < 5){
+                    secaoInformacoes[i][j] = ' ';
+                }else if(j == 5){
+                    secaoInformacoes[i][j] = "Combustivel "+to_string(helicoptero.getCombustivel());
+                }else if(j == 6){
+                    secaoInformacoes[i][j] = "   Pessoas Resgatadas "
+                                            +to_string(base.getPessoasResgatadas().size())
+                                            +"/"
+                                            +to_string(jogo::PESSOASNIVELFACIL);
+                }else if(j == 7){
+                    secaoInformacoes[i][j] = "   Capacidade "
+                                            +to_string(helicoptero.getQntPessoas())
+                                            +"/"
+                                            +to_string(helicoptero.getCapacidadeMax());
+                }
+            }
+        }
+    }
+
+    //jogo
     for(int i=0; i < jogo::ALTURAJOGO; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
-            tela[i][j] = ' ';
+            secaoJogo[i][j] = ' ';
         }
     }
     base.atualizar();
@@ -75,7 +138,7 @@ void Fase::desenhar(ObjetoDoJogo obj){
     for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
         string linha = linhasDoSprite[linhaSprite];
         for(int indice = 0; indice < linha.length(); indice++){
-            tela[y+linhaSprite][x+indice] = linha[indice]; 
+            secaoJogo[y+linhaSprite][x+indice] = linha[indice]; 
         }
     }
 }
@@ -85,7 +148,7 @@ void Fase::desenhar(int y, int x,Sprite spr){
     for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
        string linha = linhasDoSprite[linhaSprite];
        for(int indice = 0; indice < linha.length(); indice++){
-           tela[y+linhaSprite][x+indice] = linha[indice]; 
+           secaoJogo[y+linhaSprite][x+indice] = linha[indice]; 
        }
     }
 }
@@ -107,7 +170,7 @@ void Fase::jogar(){
             }
             }
         if(helicoptero.getX() >= base.getX() && helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
-            if(helicoptero.getY()+helicoptero.getAltura() == base.getY()){
+            if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
                 if(helicoptero.getPessoasResgatadas().size() > 0){
                     ObjetoDoJogo pessoaResgatada = --helicoptero;
                     base+pessoaResgatada;

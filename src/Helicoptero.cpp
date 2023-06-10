@@ -1,5 +1,6 @@
 #include "Helicoptero.h"
 #include "ObjetoDoJogo.h"
+#include "constantes.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -11,7 +12,8 @@ Helicoptero::Helicoptero(){
 
 Helicoptero::Helicoptero(string caminhoDoArquivo ,int numX, int numY)
 :ObjetoDoJogo(caminhoDoArquivo, numX, numY){
-    capacidadeMax = 4;
+    combustivel = jogo::COMBUSTIVELMAX;
+    capacidadeMax = jogo::CAPACIDADEPESSOASHELICOPTERO;
     qntPessoas = 0;
     obstaculo = false;
 };
@@ -28,12 +30,21 @@ ObjetoDoJogo Helicoptero::operator--(){
     return pessoa;
 }
 
+void Helicoptero::atualizar(){
+    sprites.atualizar();
+    combustivel--;
+}
+
 int Helicoptero::getQntPessoas(){
     return qntPessoas;
 }
 
 int Helicoptero::getCapacidadeMax(){
     return capacidadeMax;
+}
+
+int Helicoptero::getCombustivel(){
+    return combustivel;
 }
 
 vector<ObjetoDoJogo> Helicoptero::getPessoasResgatadas(){
