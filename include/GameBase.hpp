@@ -1,5 +1,5 @@
-#ifndef GAMEBASE_H
-#define GAMEBASE_H
+#ifndef GAMEBASE_HPP
+#define GAMEBASE_HPP
 
 class GameBase{
     private:

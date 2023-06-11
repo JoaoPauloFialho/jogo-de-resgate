@@ -1,6 +1,6 @@
-#include "Helicoptero.h"
-#include "ObjetoDoJogo.h"
-#include "constantes.h"
+#include "Helicoptero.hpp"
+#include "ObjetoDoJogo.hpp"
+#include "constantes.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>

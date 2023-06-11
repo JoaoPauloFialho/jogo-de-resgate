@@ -1,7 +1,7 @@
-#ifndef GAME_H
-#define GAME_H
-#include "GameBase.h"
-#include "constantes.h"
+#ifndef GAME_HPP
+#define GAME_HPP
+#include "GameBase.hpp"
+#include "constantes.hpp"
 #include <iostream>
 using namespace std;
   

@@ -1,5 +1,5 @@
-#include "Base.h"
-#include "ObjetoDoJogo.h"
+#include "Base.hpp"
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>

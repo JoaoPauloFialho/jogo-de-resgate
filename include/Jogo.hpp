@@ -1,7 +1,7 @@
-#ifndef JOGO_H
-#define JOGO_H
+#ifndef JOGO_HPP
+#define JOGO_HPP
 #include <iostream>
-#include "constantes.h"
+#include "constantes.hpp"
 using namespace std;
 
 class Jogo{

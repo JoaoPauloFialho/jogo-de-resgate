@@ -1,6 +1,6 @@
-#ifndef PESSOA_H
-#define PESSOA_H
-#include "ObjetoDoJogo.h"
+#ifndef PESSOA_HPP
+#define PESSOA_HPP
+#include "ObjetoDoJogo.hpp"
 
 class Pessoa: public ObjetoDoJogo{
     private:

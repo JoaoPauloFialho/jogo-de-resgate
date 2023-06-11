@@ -1,9 +1,9 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "ObjetoDoJogo.h"
-#include "SpriteAnimado.h"
-#include "constantes.h"
+#include "ObjetoDoJogo.hpp"
+#include "SpriteAnimado.hpp"
+#include "constantes.hpp"
 using namespace std;
 
 ObjetoDoJogo::ObjetoDoJogo(){};
@@ -44,7 +44,7 @@ void ObjetoDoJogo::atualizar(){
 void ObjetoDoJogo::inicializar(){};
 
 bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
-    if((obj.getY() >= y && obj.getY() <= y+altura) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
+    if((obj.getY() >= y && obj.getY() <= y+altura-1) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
         if((obj.getX() >= x && obj.getX() <= x+largura) || (x >= obj.getX() && x<= obj.getX() + obj.getLargura())){
             return true; //tem 2 ifs pois eu preciso checar se o obj1 está sobre o obj2 ou se o obj2 está sobre obj1
         }                //isso acontece pois tem essas 2 possibilidades para que o obj de analise esteja colidindo

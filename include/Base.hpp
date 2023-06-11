@@ -1,6 +1,6 @@
-#ifndef BASE_H
-#define BASE_H
-#include "ObjetoDoJogo.h"
+#ifndef BASE_HPP
+#define BASE_HPP
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 
 class Base: public ObjetoDoJogo

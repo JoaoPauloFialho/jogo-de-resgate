@@ -1,15 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#include "Fase.h"
-#include "SpriteAnimado.h"
-#include "Pessoa.h"
-#include "GameBase.h"
-#include "Obstaculo.h"
-#include "Sprite.h"
-#include "Base.h"
-#include "Game.h"
-#include "Helicoptero.h"
+#include "Fase.hpp"
+#include "SpriteAnimado.hpp"
+#include "Pessoa.hpp"
+#include "GameBase.hpp"
+#include "Obstaculo.hpp"
+#include "Sprite.hpp"
+#include "Base.hpp"
+#include "Game.hpp"
+#include "Helicoptero.hpp"
 using namespace std;
 
 

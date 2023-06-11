@@ -1,5 +1,5 @@
-#include "Obstaculo.h"
-#include "ObjetoDoJogo.h"
+#include "Obstaculo.hpp"
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>

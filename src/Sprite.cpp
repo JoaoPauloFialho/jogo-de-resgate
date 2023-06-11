@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Sprite.h"
+#include "Sprite.hpp"
 #include <vector>
 using namespace std;
 

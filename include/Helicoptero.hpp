@@ -1,6 +1,6 @@
-#ifndef HELICOPTERO_H
-#define HELICOPTERO_H
-#include "ObjetoDoJogo.h"
+#ifndef HELICOPTERO_HPP
+#define HELICOPTERO_HPP
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 
 class Helicoptero: public ObjetoDoJogo{

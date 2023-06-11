@@ -2,8 +2,8 @@
 #include <fstream>
 #include <unistd.h>
 #include <vector>
-#include "SpriteAnimado.h"
-#include "Sprite.h"
+#include "SpriteAnimado.hpp"
+#include "Sprite.hpp"
 using namespace std;
 
 SpriteAnimado::SpriteAnimado(){

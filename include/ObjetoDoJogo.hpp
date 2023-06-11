@@ -1,7 +1,7 @@
-#ifndef OBJETODOJOGO_H
-#define OBJETODOJOGO_H
-#include "SpriteAnimado.h"
-#include "GameBase.h"
+#ifndef OBJETODOJOGO_HPP
+#define OBJETODOJOGO_HPP
+#include "SpriteAnimado.hpp"
+#include "GameBase.hpp"
 
 class ObjetoDoJogo: public GameBase
 {

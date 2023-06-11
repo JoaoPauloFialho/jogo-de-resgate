@@ -1,8 +1,8 @@
-#ifndef SPRITEANIMADO_H
-#define SPRITEANIMADO_H
+#ifndef SPRITEANIMADO_HPP
+#define SPRITEANIMADO_HPP
 #include <iostream>
-#include "Sprite.h"
-#include "GameBase.h"
+#include "Sprite.hpp"
+#include "GameBase.hpp"
 #include <vector>
 
 class SpriteAnimado: public GameBase{

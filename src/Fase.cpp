@@ -1,10 +1,10 @@
-#include "Fase.h"
-#include "utils.h"
-#include "Helicoptero.h"
-#include "Base.h"
-#include "SpriteAnimado.h"
-#include "constantes.h"
-#include "Item.h"
+#include "Fase.hpp"
+#include "utils.hpp"
+#include "Helicoptero.hpp"
+#include "Base.hpp"
+#include "SpriteAnimado.hpp"
+#include "constantes.hpp"
+#include "Item.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -12,10 +12,10 @@
 using namespace std;
 
 Fase::Fase(){};
-Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo){
+Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackgroud){
     base = Base("sprites/base.txt", jogo::XINICIALBASE, jogo::YINICIALBASE);
     helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
-    background = SpriteAnimado("sprites/background1.txt");
+    background = SpriteAnimado(caminhoBackgroud);
     objetos = objetosDoJogo;
     executando = true;
 };
@@ -51,7 +51,7 @@ void Fase::inicializar(){
                     secaoInformacoes[i][j] = "   Pessoas Resgatadas "
                                             +to_string(base.getPessoasResgatadas().size())
                                             +"/"
-                                            +to_string(jogo::PESSOASNIVELFACIL);
+                                            +to_string(jogo::PESSOASRESGATAR);
                 }else if(j == 7){
                     secaoInformacoes[i][j] = "   Capacidade "
                                             +to_string(helicoptero.getQntPessoas())
@@ -126,7 +126,7 @@ void Fase::atualizar(){
                     secaoInformacoes[i][j] = "   Pessoas Resgatadas "
                                             +to_string(base.getPessoasResgatadas().size())
                                             +"/"
-                                            +to_string(jogo::PESSOASNIVELFACIL);
+                                            +to_string(jogo::PESSOASRESGATAR);
                 }else if(j == 7){
                     secaoInformacoes[i][j] = "   Capacidade "
                                             +to_string(helicoptero.getQntPessoas())
@@ -162,7 +162,7 @@ void Fase::atualizar(){
             }
         }
     }
-    if(base.getPessoasResgatadas().size() == jogo::PESSOASNIVELFACIL){
+    if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
         executando = false;
     }
 }

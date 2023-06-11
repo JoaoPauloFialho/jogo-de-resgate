@@ -1,9 +1,9 @@
-#include "Item.h"
-#include "ObjetoDoJogo.h"
+#include "Item.hpp"
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "constantes.h"
+#include "constantes.hpp"
 using namespace std;
 
 

@@ -1,11 +1,11 @@
-#ifndef FASE_H
-#define FASE_H
-#include "ObjetoDoJogo.h"
-#include "Base.h"
-#include "Sprite.h"
-#include "Helicoptero.h"
-#include "constantes.h"
-#include "GameBase.h"
+#ifndef FASE_HPP
+#define FASE_HPP
+#include "ObjetoDoJogo.hpp"
+#include "Base.hpp"
+#include "Sprite.hpp"
+#include "Helicoptero.hpp"
+#include "constantes.hpp"
+#include "GameBase.hpp"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -18,11 +18,11 @@ class Fase: public GameBase{
         SpriteAnimado background;
         string secaoInformacoes[jogo::ALTURASECAOINFORMACOES][jogo::LARGURAJOGO];
         string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
-        int qntdPessoasResgatadas;
+        int pessoas;
         bool executando;
     public:
         Fase();
-        Fase(vector<ObjetoDoJogo> objetosDoJogo);
+        Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackground);
         void mostrar();
         void inicializar() override;
         void atualizar() override;

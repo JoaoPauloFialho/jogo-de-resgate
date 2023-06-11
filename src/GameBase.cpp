@@ -1,3 +1,3 @@
-#include "GameBase.h"
+#include "GameBase.hpp"
 
 GameBase::GameBase(){}

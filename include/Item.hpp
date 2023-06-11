@@ -1,6 +1,6 @@
-#ifndef ITEM_H
-#define ITEM_H
-#include "ObjetoDoJogo.h"
+#ifndef ITEM_HPP
+#define ITEM_HPP
+#include "ObjetoDoJogo.hpp"
 
 class Item:public ObjetoDoJogo{
     private:

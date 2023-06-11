@@ -1,6 +1,6 @@
-#ifndef OBSTACULO_H
-#define OBSTACULO_H
-#include "ObjetoDoJogo.h"
+#ifndef OBSTACULO_HPP
+#define OBSTACULO_HPP
+#include "ObjetoDoJogo.hpp"
 
 class Obstaculo: public ObjetoDoJogo{
     private:

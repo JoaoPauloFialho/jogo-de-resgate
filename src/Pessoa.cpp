@@ -1,5 +1,5 @@
-#include "Pessoa.h"
-#include "ObjetoDoJogo.h"
+#include "Pessoa.hpp"
+#include "ObjetoDoJogo.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>
