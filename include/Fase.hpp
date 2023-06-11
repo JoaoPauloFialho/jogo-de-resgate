@@ -1,6 +1,7 @@
 #ifndef FASE_HPP
 #define FASE_HPP
 #include "ObjetoDoJogo.hpp"
+#include "Sound.hpp"
 #include "Base.hpp"
 #include "Sprite.hpp"
 #include "Helicoptero.hpp"
@@ -18,10 +19,18 @@ class Fase: public GameBase{
         SpriteAnimado background;
         string secaoInformacoes[jogo::ALTURASECAOINFORMACOES][jogo::LARGURAJOGO];
         string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
+        Sound musica;
+        Sound somSemCombustivel;
+        Sound somColisao;
+        Sound somColetaItem;
+        Sound somColetaPessoa;
+        Sound somVitoria;
+        Sound resgatouPessoa;
         int pessoas;
         bool executando;
     public:
         Fase();
+        ~Fase();
         Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackground);
         void mostrar();
         void inicializar() override;

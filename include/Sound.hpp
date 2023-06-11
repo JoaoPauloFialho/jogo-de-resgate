@@ -8,6 +8,7 @@ using namespace std;
 class Sound
 {
 public:
+	Sound();
 	Sound(string soundName) : soundName(soundName),PID_child(-1),paused(false){}
 	~Sound();
 

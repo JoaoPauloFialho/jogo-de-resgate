@@ -5,10 +5,12 @@
 #include "SpriteAnimado.hpp"
 #include "constantes.hpp"
 #include "Item.hpp"
+#include "Sound.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <iomanip>
+#include <unistd.h>
 using namespace std;
 
 Fase::Fase(){};
@@ -17,11 +19,22 @@ Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackgroud){
     helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
     background = SpriteAnimado(caminhoBackgroud);
     objetos = objetosDoJogo;
+    musica = Sound("sounds/musicafase1.mp3");
+    somColetaItem = Sound("sounds/somcoletaitem.mp3");
+    somColetaPessoa = Sound("sounds/somcoletapessoa.mp3");
+    somSemCombustivel = Sound("sounds/somacaboucombustivel.mp3");
+    somVitoria = Sound("sounds/somvitoria.mp3");
+    somColisao = Sound("sounds/somcolisao.mp3");
     executando = true;
 };
 
+Fase::~Fase(){
+    //musica.~Sound();
+}
+
 void Fase::inicializar(){
     //informações
+    musica.playloop();
     for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
         for(int j=0; j < jogo::LARGURAJOGO; j++){
             if(i==0){
@@ -156,6 +169,7 @@ void Fase::atualizar(){
             desenhar(*obj);
             if(obj->getItem()){
                 if(helicoptero.colideComObjeto(*obj)){
+                    somColetaItem.play();
                     helicoptero.abastece(jogo::BONUSITEM);
                     obj->desativa();
                 }
@@ -164,6 +178,7 @@ void Fase::atualizar(){
     }
     if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
         executando = false;
+        somVitoria.play();
     }
 }
 
@@ -202,6 +217,7 @@ void Fase::jogar(){
             ObjetoDoJogo* objColisao = &objetos[i];
             if(!objColisao->getObstaculo()){
                 if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
+                    somColetaPessoa.play();
                     objColisao->desativa();
                     helicoptero+*objColisao;
                 }
@@ -224,14 +240,18 @@ void Fase::jogar(){
                 ObjetoDoJogo obj = objetos[i];
                 if(helicoptero.getCombustivel() < 1){
                     executando = false;
+                    somSemCombustivel.play();
                 }
                 if(helicoptero.colideComObjeto(obj) && obj.getObstaculo()){
                     executando = false;
+                    somColisao.play();
                 }
             }
         }
         atualizar();
         system("clear");
     }
+    musica.stop();
+    cin >> cmd;
     system("clear");
 }

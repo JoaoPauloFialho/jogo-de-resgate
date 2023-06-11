@@ -19,8 +19,8 @@ void Game::inicializar(){};
 void Game::atualizar(){};
     
 void Game::rodar(){
-    while(true){
-        int escolha;
+    //while(true){
+    //    int escolha;
         //cin >> escolha
         //if(escolha == 1){
             vector<ObjetoDoJogo> objetosDoJogo;
@@ -61,5 +61,5 @@ void Game::rodar(){
             Fase fase = Fase(objetosDoJogo, "sprites/background1.txt");
             fase.jogar();
         //}
-    }
+    //}
 };

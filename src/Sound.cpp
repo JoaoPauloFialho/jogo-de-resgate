@@ -7,6 +7,8 @@
 #include <unistd.h>
 using namespace std;
 
+Sound::Sound(){};
+
 Sound::~Sound()
 {
 	if (isplaying())
