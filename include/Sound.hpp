@@ -1,5 +1,6 @@
 #ifndef SOUND_HPP
 #define SOUND_HPP
+using namespace std;
 
 #include <string>
 
@@ -7,7 +8,7 @@
 class Sound
 {
 public:
-	Sound(std::string soundName) : soundName(soundName),PID_child(-1),paused(false){}
+	Sound(string soundName) : soundName(soundName),PID_child(-1),paused(false){}
 	~Sound();
 
 	bool play(unsigned = 1);
@@ -20,7 +21,7 @@ public:
 	
 
 private:
-	std::string soundName;
+	string soundName;
 	int PID_child;
 	
 	bool paused;

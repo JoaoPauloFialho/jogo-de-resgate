@@ -1,11 +1,11 @@
 #include "Sound.hpp"
 #include <sstream>
 #include <fstream>
-
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
 #include <unistd.h>
+using namespace std;
 
 Sound::~Sound()
 {
@@ -21,8 +21,8 @@ bool Sound::play(unsigned times)
 	
 	if (( PID_child = fork() ) == 0) //processo filho
 	{
-		std::ostringstream sTimes;
-		sTimes.str(std::string());
+		ostringstream sTimes;
+		sTimes.str(string());
 		sTimes << "-l" << times;
 		char *argv[] = {"/usr/bin/mpg321","-q",const_cast<char*>(sTimes.str().c_str()),
 						const_cast<char*>(soundName.c_str()),
