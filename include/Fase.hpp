@@ -27,17 +27,16 @@ class Fase: public GameBase{
         Sound somVitoria;
         Sound resgatouPessoa;
         int pessoas;
-        bool executando;
+        bool vitoria;
     public:
         Fase();
-        ~Fase();
         Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackground);
         void mostrar();
         void inicializar() override;
         void atualizar() override;
         void desenhar(ObjetoDoJogo obj);
-        void desenhar(int y, int x, Sprite obj);
-        void jogar();
+        void desenhar(int y, int x, SpriteAnimado obj);
+        bool jogar();
 };
 
 #endif

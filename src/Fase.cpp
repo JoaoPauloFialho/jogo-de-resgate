@@ -6,6 +6,7 @@
 #include "constantes.hpp"
 #include "Item.hpp"
 #include "Sound.hpp"
+#include "Game.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -25,12 +26,8 @@ Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackgroud){
     somSemCombustivel = Sound("sounds/somacaboucombustivel.mp3");
     somVitoria = Sound("sounds/somvitoria.mp3");
     somColisao = Sound("sounds/somcolisao.mp3");
-    executando = true;
+    vitoria = false;
 };
-
-Fase::~Fase(){
-    //musica.~Sound();
-}
 
 void Fase::inicializar(){
     //informações
@@ -81,13 +78,20 @@ void Fase::inicializar(){
             secaoJogo[i][j] = ' ';
         }
     }
-    desenhar(1,1,background.getSpriteAtual());
+    desenhar(1,1,background);
     for(int i = 0; i < objetos.size(); i++){
         ObjetoDoJogo obj = objetos[i];
         desenhar(obj);
     }
     desenhar(base);
     desenhar(helicoptero);
+    if(Game().getFaseAtual() == 1){
+        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase1.txt"));
+    }else if(Game().getFaseAtual() == 2){
+        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase2.txt"));
+    }else if(Game().getFaseAtual() == 3){
+        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase3.txt"));
+    }
 };
 
 
@@ -159,7 +163,7 @@ void Fase::atualizar(){
     base.atualizar();
     helicoptero.atualizar();
     background.atualizar();
-    desenhar(1,1,background.getSpriteAtual());
+    desenhar(1,1,background);
     desenhar(base);
     desenhar(helicoptero);
     for(int i = 0; i < objetos.size(); i++){
@@ -175,10 +179,6 @@ void Fase::atualizar(){
                 }
             }
         }
-    }
-    if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
-        executando = false;
-        somVitoria.play();
     }
 }
 
@@ -196,8 +196,8 @@ void Fase::desenhar(ObjetoDoJogo obj){
     }
 }
 
-void Fase::desenhar(int y, int x,Sprite spr){
-    vector<string> linhasDoSprite = spr.getLinhas();
+void Fase::desenhar(int y, int x,SpriteAnimado spr){
+    vector<string> linhasDoSprite = spr.getSpriteAtual().getLinhas();
     for(int linhaSprite = 0; linhaSprite < linhasDoSprite.size(); linhaSprite++){
        string linha = linhasDoSprite[linhaSprite];
        for(int indice = 0; indice < linha.length(); indice++){
@@ -206,9 +206,10 @@ void Fase::desenhar(int y, int x,Sprite spr){
     }
 }
 
-void Fase::jogar(){
+bool Fase::jogar(){
     string cmd;
     inicializar();
+    bool executando = true;
     while(executando){
         mostrar();
         cin >> cmd;
@@ -231,7 +232,27 @@ void Fase::jogar(){
                 }
             }
         }
-        }else if(cmd == "p"){}
+        if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
+            string continuar;
+            executando = false;
+            vitoria = true;
+            musica.stop();
+            somVitoria.play();
+            system("clear");
+            atualizar();
+            desenhar(0, 0, SpriteAnimado("sprites/mensagemvitoria.txt"));
+            mostrar();
+            cin >> continuar;
+        }
+        }else if(cmd == "p"){
+            string pausa;
+            musica.pause();
+            system("clear");
+            desenhar(0, 0, SpriteAnimado("sprites/mensagempausa.txt"));
+            mostrar();
+            cin >> pausa;
+            musica.unpause();
+        }
         else if(cmd == "q"){
             executando = false;
         }else{
@@ -239,19 +260,27 @@ void Fase::jogar(){
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo obj = objetos[i];
                 if(helicoptero.getCombustivel() < 1){
+                    string cotinuar;
                     executando = false;
                     somSemCombustivel.play();
                 }
                 if(helicoptero.colideComObjeto(obj) && obj.getObstaculo()){
+                    string continuar;
                     executando = false;
+                    musica.stop();
                     somColisao.play();
+                    system("clear");
+                    atualizar();
+                    desenhar(0, 0,SpriteAnimado("sprites/mensagemcolidiu.txt"));
+                    mostrar();
+                    cin >> continuar;
                 }
             }
         }
         atualizar();
         system("clear");
     }
-    musica.stop();
     cin >> cmd;
     system("clear");
+    return vitoria;
 }

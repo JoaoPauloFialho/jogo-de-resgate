@@ -16,7 +16,11 @@ Game::Game(){};
      
 void Game::inicializar(){};  
     
+int Game::faseAtual = 1;
+
 void Game::atualizar(){};
+
+int Game::getFaseAtual(){return faseAtual;};
     
 void Game::rodar(){
     //while(true){
