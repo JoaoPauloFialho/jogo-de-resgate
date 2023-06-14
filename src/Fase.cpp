@@ -248,6 +248,7 @@ bool Fase::jogar(){
             musica.unpause();
         }
         else if(cmd == "q"){
+            musica.stop();
             executando = false;
         }else{
             helicoptero.moveTo(cmd);
