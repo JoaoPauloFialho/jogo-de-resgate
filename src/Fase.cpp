@@ -217,19 +217,25 @@ bool Fase::jogar(){
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo* objColisao = objetos[i];
                 if(!objColisao->getObstaculo()){
-                    if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax() && !dynamic_cast<Pessoa*>(objColisao)->getResgatada()){ 
-                        somColetaPessoa.play();
-                        objColisao->desativa();
-                        helicoptero+objColisao;
+                    if(helicoptero.colideComObjeto(*objColisao)){ 
+                        if(helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){
+                            if(!dynamic_cast<Pessoa*>(objColisao)->getResgatada()){
+                                somColetaPessoa.play();
+                                objColisao->desativa();
+                                helicoptero+objColisao;
+                            }
+                        }
                     }
                 }
                 }
-            if(helicoptero.getX() >= base.getX() && helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
-                if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
-                    if(helicoptero.getPessoasResgatadas().size() > 0){
-                        cout << "apertou x" << endl;
-                        Pessoa* pessoaResgatada = dynamic_cast<Pessoa*>(--helicoptero);
-                        base+pessoaResgatada;
+            if(helicoptero.getX() >= base.getX()){
+                if(helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
+                    if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
+                        if(helicoptero.getPessoasResgatadas().size() > 0){
+                            cout << "apertou x" << endl;
+                            Pessoa* pessoaResgatada = dynamic_cast<Pessoa*>(--helicoptero);
+                            base+pessoaResgatada;
+                        }
                     }
                 }
             }
