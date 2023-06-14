@@ -21,7 +21,12 @@ public:
     bool colideComObjeto(ObjetoDoJogo obj);
     void atualizar() override;
     void inicializar() override;
+    void moveTo(int novoX, int novoY);
     void moveTo(string lado);
+    void moveEsquerda();
+    void moveDireita();
+    void moveBaixo();
+    void moveCima();
     void ativa();
     void desativa();
     void setX(int numero);

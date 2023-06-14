@@ -13,7 +13,7 @@ using namespace std;
 
 class Fase: public GameBase{
     private:
-        vector<ObjetoDoJogo> objetos;
+        vector<ObjetoDoJogo*> objetos;
         Base base;
         Helicoptero helicoptero;
         SpriteAnimado background;
@@ -30,7 +30,7 @@ class Fase: public GameBase{
         bool vitoria;
     public:
         Fase();
-        Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackground);
+        Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackground);
         void mostrar();
         void inicializar() override;
         void atualizar() override;

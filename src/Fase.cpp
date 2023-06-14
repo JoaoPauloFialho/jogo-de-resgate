@@ -15,7 +15,7 @@
 using namespace std;
 
 Fase::Fase(){};
-Fase::Fase(vector<ObjetoDoJogo> objetosDoJogo, string caminhoBackgroud){
+Fase::Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackgroud){
     base = Base("sprites/base.txt", jogo::XINICIALBASE, jogo::YINICIALBASE);
     helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
     background = SpriteAnimado(caminhoBackgroud);
@@ -80,8 +80,7 @@ void Fase::inicializar(){
     }
     desenhar(1,1,background);
     for(int i = 0; i < objetos.size(); i++){
-        ObjetoDoJogo obj = objetos[i];
-        desenhar(obj);
+        desenhar(*objetos[i]);
     }
     desenhar(base);
     desenhar(helicoptero);
@@ -167,14 +166,15 @@ void Fase::atualizar(){
     desenhar(base);
     desenhar(helicoptero);
     for(int i = 0; i < objetos.size(); i++){
-        ObjetoDoJogo *obj = &objetos[i];
+        ObjetoDoJogo *obj = objetos[i];
         if(obj->getAtivo()){
             obj->atualizar();
             desenhar(*obj);
             if(obj->getItem()){
                 if(helicoptero.colideComObjeto(*obj)){
+                    Item* item = dynamic_cast<Item*>(obj);
                     somColetaItem.play();
-                    helicoptero.abastece(jogo::BONUSITEM);
+                    helicoptero.abastece(item->getBonus());
                     obj->desativa();
                 }
             }
@@ -214,24 +214,25 @@ bool Fase::jogar(){
         mostrar();
         cin >> cmd;
         if(cmd == "x"){
-        for(int i = 0; i < objetos.size(); i++){
-            ObjetoDoJogo* objColisao = &objetos[i];
-            if(!objColisao->getObstaculo()){
-                if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){ 
-                    somColetaPessoa.play();
-                    objColisao->desativa();
-                    helicoptero+*objColisao;
+            for(int i = 0; i < objetos.size(); i++){
+                ObjetoDoJogo* objColisao = objetos[i];
+                if(!objColisao->getObstaculo()){
+                    if(helicoptero.colideComObjeto(*objColisao) && helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax() && !dynamic_cast<Pessoa*>(objColisao)->getResgatada()){ 
+                        somColetaPessoa.play();
+                        objColisao->desativa();
+                        helicoptero+objColisao;
+                    }
+                }
+                }
+            if(helicoptero.getX() >= base.getX() && helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
+                if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
+                    if(helicoptero.getPessoasResgatadas().size() > 0){
+                        cout << "apertou x" << endl;
+                        Pessoa* pessoaResgatada = dynamic_cast<Pessoa*>(--helicoptero);
+                        base+pessoaResgatada;
+                    }
                 }
             }
-            }
-        if(helicoptero.getX() >= base.getX() && helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
-            if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
-                if(helicoptero.getPessoasResgatadas().size() > 0){
-                    ObjetoDoJogo pessoaResgatada = --helicoptero;
-                    base+pessoaResgatada;
-                }
-            }
-        }
         if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
             string continuar;
             executando = false;
@@ -258,13 +259,13 @@ bool Fase::jogar(){
         }else{
             helicoptero.moveTo(cmd);
             for(int i = 0; i < objetos.size(); i++){
-                ObjetoDoJogo obj = objetos[i];
+                ObjetoDoJogo* obj = objetos[i];
                 if(helicoptero.getCombustivel() < 1){
                     string cotinuar;
                     executando = false;
                     somSemCombustivel.play();
                 }
-                if(helicoptero.colideComObjeto(obj) && obj.getObstaculo()){
+                if(helicoptero.colideComObjeto(*obj) && obj->getObstaculo()){
                     string continuar;
                     executando = false;
                     musica.stop();

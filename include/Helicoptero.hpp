@@ -9,7 +9,7 @@ private:
     int qntPessoas;
     float combustivel;
     float combustivelMax;
-    vector<ObjetoDoJogo> pessoasResgatadas;
+    vector<ObjetoDoJogo*> pessoasResgatadas;
 public:
     Helicoptero();
     Helicoptero(string caminhoDoArquivo ,int numX, int numY);
@@ -18,10 +18,10 @@ public:
     float getCombustivel();
     float getCombustivelMax();
     void atualizar() override;
-    void operator+(ObjetoDoJogo pessoa);
+    void operator+(ObjetoDoJogo *pessoa);
     void abastece(int qnt);
-    ObjetoDoJogo operator--();
-    vector<ObjetoDoJogo> getPessoasResgatadas();
+    ObjetoDoJogo* operator--();
+    vector<ObjetoDoJogo*> getPessoasResgatadas();
 };
 
 

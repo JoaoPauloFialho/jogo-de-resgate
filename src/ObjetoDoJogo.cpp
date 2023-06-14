@@ -30,11 +30,32 @@ void ObjetoDoJogo::ativa(){ativo = true;};
 
 void ObjetoDoJogo::desativa(){ativo = false;};
 
+void ObjetoDoJogo::moveTo(int novoX, int novoY){
+    x = novoX;
+    y = novoY;
+}
+
 void ObjetoDoJogo::moveTo(string lado){
-    if(lado == "s" && (y+altura+1) < jogo::YINICIALBASE+2) y+= jogo::DESLOCAMENTO;//+1 pois quero que o helicoptero fique no mínimo
-    if(lado == "w" && y > 0) y-= jogo::DESLOCAMENTO;                              //na altura da primeira linha da base (sobrepondo primeira linha)
-    if(lado == "a" && x > 0 ) x-= jogo::DESLOCAMENTO;
-    if(lado == "d" && (x+largura+1) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO;
+    if(lado == "s") moveBaixo();
+    if(lado == "w" ) moveCima();                              
+    if(lado == "a") moveEsquerda();
+    if(lado == "d") moveDireita();
+};
+
+void ObjetoDoJogo::moveBaixo(){
+    if((y+altura+1) < jogo::YINICIALBASE+2) y+= jogo::DESLOCAMENTO;//+1 pois quero que o helicoptero fique no mínimo na altura da primeira linha da base (sobrepondo primeira linha)
+};
+
+void ObjetoDoJogo::moveCima(){
+    if(y > 0) y-= jogo::DESLOCAMENTO;
+}
+
+void ObjetoDoJogo::moveEsquerda(){
+    if(x > 0) x-= jogo::DESLOCAMENTO;
+}
+
+void ObjetoDoJogo::moveDireita(){
+    if((x+largura+1) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO ;
 };
 
 void ObjetoDoJogo::atualizar(){

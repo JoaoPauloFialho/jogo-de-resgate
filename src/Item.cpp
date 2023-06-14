@@ -8,6 +8,10 @@ using namespace std;
 
 
 Item::Item(){
+    obstaculo = false;
+    ativo = true;
+    item = true;
+    bonus = jogo::BONUSITEM;
 }
 
 Item::Item(string caminhoDoArquivo ,int numX)

@@ -21,7 +21,7 @@ Helicoptero::Helicoptero(string caminhoDoArquivo ,int numX, int numY)
     item = false;
 };
 
-void Helicoptero::operator+(ObjetoDoJogo pessoa){
+void Helicoptero::operator+(ObjetoDoJogo *pessoa){
     pessoasResgatadas.push_back(pessoa);
     qntPessoas++;
 }
@@ -34,8 +34,8 @@ void Helicoptero::abastece(int qnt){
     }
 }
 
-ObjetoDoJogo Helicoptero::operator--(){
-    ObjetoDoJogo pessoa = pessoasResgatadas[pessoasResgatadas.size()-1];
+ObjetoDoJogo* Helicoptero::operator--(){
+    ObjetoDoJogo *pessoa = pessoasResgatadas[pessoasResgatadas.size()-1];
     pessoasResgatadas.pop_back();
     qntPessoas--;
     return pessoa;
@@ -62,6 +62,6 @@ float Helicoptero::getCombustivelMax(){
     return combustivelMax;
 }
 
-vector<ObjetoDoJogo> Helicoptero::getPessoasResgatadas(){
+vector<ObjetoDoJogo*> Helicoptero::getPessoasResgatadas(){
     return pessoasResgatadas;
 }
