@@ -232,25 +232,12 @@ bool Fase::jogar(){
                 if(helicoptero.getX()+helicoptero.getLargura()<= base.getX() + base.getLargura()){
                     if(helicoptero.getY()+helicoptero.getAltura() == base.getY()+1){
                         if(helicoptero.getPessoasResgatadas().size() > 0){
-                            cout << "apertou x" << endl;
                             Pessoa* pessoaResgatada = dynamic_cast<Pessoa*>(--helicoptero);
                             base+pessoaResgatada;
                         }
                     }
                 }
             }
-        if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
-            string continuar;
-            executando = false;
-            vitoria = true;
-            musica.stop();
-            somVitoria.play();
-            system("clear");
-            atualizar();
-            desenhar(0, 0, SpriteAnimado("sprites/mensagemvitoria.txt"));
-            mostrar();
-            cin >> continuar;
-        }
         }else if(cmd == "p"){
             string pausa;
             musica.pause();
@@ -283,6 +270,18 @@ bool Fase::jogar(){
                     cin >> continuar;
                 }
             }
+        }
+        if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
+            string continuar;
+            executando = false;
+            vitoria = true;
+            musica.stop();
+            somVitoria.play();
+            system("clear");
+            atualizar();
+            desenhar(0, 0, SpriteAnimado("sprites/mensagemvitoria.txt"));
+            mostrar();
+            cin >> continuar;
         }
         atualizar();
         system("clear");
