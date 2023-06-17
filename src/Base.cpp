@@ -34,7 +34,6 @@ void Base::operator+(Pessoa *pessoa){
         }else{
             xNovo += jogo::XINICIALBASE+pessoa->getLargura()+1;
         }
-        cout << xNovo << endl;
     };
     pessoa->moveTo(xNovo, yNovo);
     pessoa->ativa();

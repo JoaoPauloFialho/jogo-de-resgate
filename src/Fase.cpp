@@ -252,13 +252,13 @@ bool Fase::jogar(){
             executando = false;
         }else{
             helicoptero.moveTo(cmd);
+            if(helicoptero.getCombustivel() < 1){
+                string cotinuar;
+                executando = false;
+                somSemCombustivel.play();
+            }
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo* obj = objetos[i];
-                if(helicoptero.getCombustivel() < 1){
-                    string cotinuar;
-                    executando = false;
-                    somSemCombustivel.play();
-                }
                 if(helicoptero.colideComObjeto(*obj) && obj->getObstaculo()){
                     string continuar;
                     executando = false;
@@ -287,7 +287,6 @@ bool Fase::jogar(){
         atualizar();
         system("clear");
     }
-    cin >> cmd;
     system("clear");
     return vitoria;
 }

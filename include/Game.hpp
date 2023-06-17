@@ -8,6 +8,7 @@ using namespace std;
 class Game: public GameBase{
     private:
         static int faseAtual;
+        string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
     public:
         Game();
         void atualizar() override;
