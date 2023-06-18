@@ -260,8 +260,9 @@ bool Fase::jogar(){
                     desenhar(0, 0,SpriteAnimado("sprites/mensagemcolidiu.txt"));
                     mostrar();
                     getline(cin, continuar);
-                }
-            }
+                    break; //precisa ter esse break pq se dois ou mais obstaculos estiverem no mesmo X
+                }          //o helicoptero vai colidir mais de uma vez obrigando o jogador a apertar o 
+            }              //botao de continuar mais de uma vez
         }
         if(base.getPessoasResgatadas().size() == jogo::PESSOASRESGATAR){
             string continuar;

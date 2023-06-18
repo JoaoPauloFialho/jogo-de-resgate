@@ -9,15 +9,11 @@ using namespace std;
   
 class Game: public GameBase{
     private:
-        static int faseAtual;
+        int faseAtual;
         string tela[jogo::ALTURATELA][jogo::LARGURATELA];
         vector<string> opcoes;
         int opcaoAtual;
         SpriteAnimado nomeJogo;
-        //novo jogo;
-        //continuar;
-        //instruções;
-        //sair;
     public:
         Game();
         void atualizar() override;

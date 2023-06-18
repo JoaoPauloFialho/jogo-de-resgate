@@ -16,10 +16,10 @@ namespace util{
     }
 
     int achaItemEmVetor(vector<string> &vetor, string item){
-        auto ret = find(vetor.begin(), vetor.end(), item);
+        auto iterador = find(vetor.begin(), vetor.end(), item);
 
-        if (ret != vetor.end())
-            return ret - vetor.begin();
+        if (iterador != vetor.end())
+            return iterador - vetor.begin();
         return -1;
-}
+    }
 }

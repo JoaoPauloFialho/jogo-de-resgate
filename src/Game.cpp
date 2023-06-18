@@ -19,6 +19,7 @@ using namespace std;
 Game::Game(){
     nomeJogo = SpriteAnimado("sprites/nomejogo.txt");
     opcaoAtual = 0;
+    faseAtual = 0;
 };
 
 void Game::inicializar(){
@@ -30,13 +31,13 @@ void Game::inicializar(){
     opcoes.push_back("Novo Jogo");
     opcoes.push_back("Controles");
     opcoes.push_back("Sair");
-    desenhar(0, jogo::LARGURAJOGO/2-27, nomeJogo);
+    desenhar(0, (jogo::LARGURAJOGO/2)-(nomeJogo.getLargura()/2), nomeJogo);
 
     int indiceAtualIteracao = 0;
     for(int i = jogo::ALTURATELA/2; i < jogo::ALTURATELA/2+opcoes.size(); i++){
         string opcao = opcoes[indiceAtualIteracao];
         if(opcaoAtual == indiceAtualIteracao){
-            opcao = "-> " + opcao +" <-";
+            opcao = "----> " + opcao +" <----";
         }
         for(int j = 0; j < opcao.size(); j++){
             //essa divisao é para que as strings fiquem simetricamente alinhadas
@@ -54,13 +55,24 @@ void Game::atualizar(){
             tela[i][j] = " ";
         }
     };
-    desenhar(0, jogo::LARGURAJOGO/2-27, nomeJogo);
+    desenhar(0, (jogo::LARGURAJOGO/2)-(nomeJogo.getLargura()/2), nomeJogo);
+
+    if(int i = util::achaItemEmVetor(opcoes, "Continuar"); i != -1){
+        opcoes.erase(opcoes.begin()+i);
+    };
+    if(faseAtual != 0){
+        opcoes.insert(opcoes.begin(), "Continuar");
+    };
 
     int indiceAtualIteracao = 0;
     for(int i = jogo::ALTURATELA/2; i < jogo::ALTURATELA/2+opcoes.size(); i++){
         string opcao = opcoes[indiceAtualIteracao];
         if(opcaoAtual == indiceAtualIteracao){
-            opcao = "-> " + opcao +" <-";
+            if(opcao == "Continuar"){
+                opcao = "----> " + opcao + " (Nível " + to_string(faseAtual) + " )" +" <----";
+            }else{
+                opcao = "----> " + opcao +" <----";
+            }
         }
         for(int j = 0; j < opcao.size(); j++){
             //essa divisao é para que as strings fiquem simetricamente alinhadas
@@ -90,7 +102,6 @@ void Game::mostrar(){
     };
 }
 
-int Game::faseAtual = 0;
 
 int Game::getFaseAtual() { return faseAtual; };
 
@@ -125,9 +136,20 @@ void Game::rodar()
             if(opcoes[opcaoAtual] == "Sair"){
                 break;
             };
+            if(opcoes[opcaoAtual] == "Controles"){
+                string comando;
+                SpriteAnimado controles("sprites/comandos.txt");
+                desenhar(jogo::ALTURATELA/2, (jogo::LARGURAJOGO/2)-(controles.getLargura()/2)-10, controles);
+                system("clear");
+                mostrar();
+                getline(cin, comando);
+                atualizar();
+                continue;
+            };
             if (faseAtual == 1){
                 vector<ObjetoDoJogo *> objetosDoJogo;
                 Item *fuel = new Item("sprites/fuel.txt", 90, 15);
+                Item *fuel2 = new Item("sprites/fuel.txt", 33, 20);
                 Obstaculo *predio = new Obstaculo("sprites/predio1.txt", 40);
                 Obstaculo *carro = new Obstaculo("sprites/carro1.txt", 77);
                 Obstaculo *fogo1 = new Obstaculo("sprites/fogo.txt", 23);
@@ -146,6 +168,7 @@ void Game::rodar()
                 Obstaculo *fogo7 = new Obstaculo("sprites/fogo.txt", 124);
                 objetosDoJogo.push_back(predio);
                 objetosDoJogo.push_back(fuel);
+                objetosDoJogo.push_back(fuel2);
                 objetosDoJogo.push_back(carro);
                 objetosDoJogo.push_back(pes1);
                 objetosDoJogo.push_back(pes2);
@@ -234,8 +257,8 @@ void Game::rodar()
                 Pessoa *pes2 = new Pessoa("sprites/pessoa.txt", 48);
                 Pessoa *pes3 = new Pessoa("sprites/pessoa.txt", 72);
                 Obstaculo *arvore = new Obstaculo("sprites/arvore1.txt", 82);
-                Pessoa *pes4 = new Pessoa("sprites/pessoa.txt", 86, jogo::ALTURAJOGO-arvore->getAltura()-2);
-                Pessoa *pes5 = new Pessoa("sprites/pessoa.txt", 95);
+                Pessoa *pes4 = new Pessoa("sprites/pessoa.txt", 86, jogo::ALTURAJOGO-arvore->getAltura()-3);
+                Pessoa *pes5 = new Pessoa("sprites/pessoa.txt", 98);
                 Pessoa *pes6 = new Pessoa("sprites/pessoa.txt", 127, 20);
                 Obstaculo *cabana = new Obstaculo("sprites/cabana1.txt", 107);
                 Obstaculo *fogo7 = new Obstaculo("sprites/fogo.txt", 107, jogo::ALTURAJOGO - cabana->getAltura() - 2);

@@ -1,0 +1,14 @@
+TECLA W -> Move o helicoptero para cima    
+                                           
+TECLA S -> Move o helicoptero para baixo   
+                                           
+TECLA A -> Move o helicoptero para esquerda
+                                           
+TECLA D -> Move o helicoptero para direita 
+                                           
+TECLA X -> Resgata/Deixa na base as pessoas
+                                           
+TECLA P -> Pausa o Game                    
+                                           
+TECLA Q -> Abrir menu
+fimsprite
