@@ -1,5 +1,8 @@
 #include "utils.hpp"
 #include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 namespace util{
@@ -12,4 +15,11 @@ namespace util{
         return static_cast<int>(porcentagem);
     }
 
+    int achaItemEmVetor(vector<string> &vetor, string item){
+        auto ret = find(vetor.begin(), vetor.end(), item);
+
+        if (ret != vetor.end())
+            return ret - vetor.begin();
+        return -1;
+}
 }

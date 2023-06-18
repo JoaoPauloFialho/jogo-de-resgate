@@ -17,20 +17,15 @@ class Fase: public GameBase{
         Base base;
         Helicoptero helicoptero;
         SpriteAnimado background;
+        SpriteAnimado mensagem;
         string secaoInformacoes[jogo::ALTURASECAOINFORMACOES][jogo::LARGURAJOGO];
         string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
         Sound musica;
-        Sound somSemCombustivel;
-        Sound somColisao;
-        Sound somColetaItem;
-        Sound somColetaPessoa;
-        Sound somVitoria;
-        Sound resgatouPessoa;
         int pessoas;
         bool vitoria;
     public:
         Fase();
-        Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackground);
+        Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackground, string caminhoMensagem, string caminhoMusica);
         void mostrar();
         void inicializar() override;
         void atualizar() override;

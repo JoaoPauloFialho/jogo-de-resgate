@@ -4,6 +4,7 @@
 #include "Base.hpp"
 #include "SpriteAnimado.hpp"
 #include "constantes.hpp"
+#include "SonsFase.hpp"
 #include "Item.hpp"
 #include "Sound.hpp"
 #include "Game.hpp"
@@ -15,17 +16,13 @@
 using namespace std;
 
 Fase::Fase(){};
-Fase::Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackgroud){
+Fase::Fase(vector<ObjetoDoJogo*> objetosDoJogo, string caminhoBackgroud, string caminhoMensagem, string caminhoMusica){
     base = Base("sprites/base.txt", jogo::XINICIALBASE, jogo::YINICIALBASE);
     helicoptero = Helicoptero("sprites/helicoptero.txt",jogo::XINICIALHELICOPTERO , jogo::YINICIALHELICOPTERO);
     background = SpriteAnimado(caminhoBackgroud);
+    mensagem = SpriteAnimado(caminhoMensagem);
     objetos = objetosDoJogo;
-    musica = Sound("sounds/musicafase1.mp3");
-    somColetaItem = Sound("sounds/somcoletaitem.mp3");
-    somColetaPessoa = Sound("sounds/somcoletapessoa.mp3");
-    somSemCombustivel = Sound("sounds/somacaboucombustivel.mp3");
-    somVitoria = Sound("sounds/somvitoria.mp3");
-    somColisao = Sound("sounds/somcolisao.mp3");
+    musica = Sound(caminhoMusica);
     vitoria = false;
 };
 
@@ -33,7 +30,7 @@ void Fase::inicializar(){
     //informações
     musica.playloop();
     for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
-        for(int j=0; j < jogo::LARGURAJOGO; j++){
+        for(int j=0; j < jogo::LARGURASECAOINFORMACOES; j++){
             if(i==0){
                 secaoInformacoes[i][j] = '~';
             }else if(i == jogo::ALTURASECAOINFORMACOES-1){
@@ -84,20 +81,14 @@ void Fase::inicializar(){
     }
     desenhar(base);
     desenhar(helicoptero);
-    if(Game().getFaseAtual() == 1){
-        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase1.txt"));
-    }else if(Game().getFaseAtual() == 2){
-        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase2.txt"));
-    }else if(Game().getFaseAtual() == 3){
-        desenhar(0, 0, SpriteAnimado("sprites/mensagemfase3.txt"));
-    }
+    desenhar(0, 0, mensagem);
 };
 
 
 void Fase::mostrar(){
     //informações
     for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
-        for(int j=0; j < jogo::LARGURAJOGO; j++){
+        for(int j=0; j < jogo::LARGURASECAOINFORMACOES; j++){
             cout << secaoInformacoes[i][j]; 
         }
         cout<<endl;
@@ -114,7 +105,7 @@ void Fase::mostrar(){
 void Fase::atualizar(){
     //informações
     for(int i=0; i< jogo::ALTURASECAOINFORMACOES; i++){
-        for(int j=0; j < jogo::LARGURAJOGO; j++){
+        for(int j=0; j < jogo::LARGURASECAOINFORMACOES; j++){
             if(i==0){
                 secaoInformacoes[i][j] = '~';
             }else if(i == jogo::ALTURASECAOINFORMACOES-1){
@@ -173,7 +164,7 @@ void Fase::atualizar(){
             if(obj->getItem()){
                 if(helicoptero.colideComObjeto(*obj)){
                     Item* item = dynamic_cast<Item*>(obj);
-                    somColetaItem.play();
+                    jogo::somColetaItem->play();
                     helicoptero.abastece(item->getBonus());
                     obj->desativa();
                 }
@@ -212,7 +203,7 @@ bool Fase::jogar(){
     bool executando = true;
     while(executando){
         mostrar();
-        cin >> cmd;
+        getline(cin, cmd);
         if(cmd == "x"){
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo* objColisao = objetos[i];
@@ -220,7 +211,7 @@ bool Fase::jogar(){
                     if(helicoptero.colideComObjeto(*objColisao)){ 
                         if(helicoptero.getQntPessoas()+1 <= helicoptero.getCapacidadeMax()){
                             if(!dynamic_cast<Pessoa*>(objColisao)->getResgatada()){
-                                somColetaPessoa.play();
+                                jogo::somColetaPessoa->play();
                                 objColisao->desativa();
                                 helicoptero+objColisao;
                             }
@@ -244,7 +235,7 @@ bool Fase::jogar(){
             system("clear");
             desenhar(0, 0, SpriteAnimado("sprites/mensagempausa.txt"));
             mostrar();
-            cin >> pausa;
+            getline(cin, pausa);
             musica.unpause();
         }
         else if(cmd == "q"){
@@ -255,7 +246,7 @@ bool Fase::jogar(){
             if(helicoptero.getCombustivel() < 1){
                 string cotinuar;
                 executando = false;
-                somSemCombustivel.play();
+                jogo::somSemCombustivel->play();
             }
             for(int i = 0; i < objetos.size(); i++){
                 ObjetoDoJogo* obj = objetos[i];
@@ -263,12 +254,12 @@ bool Fase::jogar(){
                     string continuar;
                     executando = false;
                     musica.stop();
-                    somColisao.play();
+                    jogo::somColisao->play();
                     system("clear");
                     atualizar();
                     desenhar(0, 0,SpriteAnimado("sprites/mensagemcolidiu.txt"));
                     mostrar();
-                    cin >> continuar;
+                    getline(cin, continuar);
                 }
             }
         }
@@ -277,12 +268,12 @@ bool Fase::jogar(){
             executando = false;
             vitoria = true;
             musica.stop();
-            somVitoria.play();
+            jogo::somVitoria->play();
             system("clear");
             atualizar();
             desenhar(0, 0, SpriteAnimado("sprites/mensagemvitoria.txt"));
             mostrar();
-            cin >> continuar;
+            getline(cin, continuar);
         }
         atualizar();
         system("clear");

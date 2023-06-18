@@ -3,9 +3,12 @@
 
 namespace jogo{
     const int DESLOCAMENTO = 1;
+    const int ALTURAJOGO = 30;
     const int LARGURAJOGO = 150;
     const int ALTURASECAOINFORMACOES = 3;
-    const int ALTURAJOGO = 30;
+    const int LARGURASECAOINFORMACOES = 150;
+    const int ALTURATELA = ALTURAJOGO+ALTURASECAOINFORMACOES;
+    const int LARGURATELA = 150;
     const int PESSOASRESGATAR = 6;
     const int BONUSITEM = 100;
     const int ALTURAHELICOPTERO = 3;

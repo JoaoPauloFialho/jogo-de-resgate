@@ -2,18 +2,29 @@
 #define GAME_HPP
 #include "GameBase.hpp"
 #include "constantes.hpp"
+#include "SpriteAnimado.hpp"
 #include <iostream>
+#include <vector>
 using namespace std;
   
 class Game: public GameBase{
     private:
         static int faseAtual;
-        string secaoJogo[jogo::ALTURAJOGO][jogo::LARGURAJOGO];
+        string tela[jogo::ALTURATELA][jogo::LARGURATELA];
+        vector<string> opcoes;
+        int opcaoAtual;
+        SpriteAnimado nomeJogo;
+        //novo jogo;
+        //continuar;
+        //instruções;
+        //sair;
     public:
         Game();
         void atualizar() override;
         void inicializar() override;
+        void desenhar(int y, int x,SpriteAnimado spr);
         void rodar();
+        void mostrar();
         int getFaseAtual();
 };
 
