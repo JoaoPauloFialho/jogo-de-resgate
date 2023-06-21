@@ -239,7 +239,7 @@ void Game::rodar()
                 objetosDoJogo.push_back(fogo11);
                 objetosDoJogo.push_back(fogo12);
                 objetosDoJogo.push_back(fogo13);
-                Fase fase = Fase(objetosDoJogo, "sprites/background1.txt", "sprites/mensagemfase2.txt" , "sounds/musicafase1.mp3");
+                Fase fase = Fase(objetosDoJogo, "sprites/background1.txt", "sprites/mensagemfase2.txt" , "sounds/musicafase2.mp3");
                 bool venceu = fase.jogar();
                 if(venceu){
                     faseAtual = 3;
@@ -286,7 +286,7 @@ void Game::rodar()
                 objetosDoJogo.push_back(fogo9);
                 objetosDoJogo.push_back(fogo10);
                 objetosDoJogo.push_back(fogo11);
-                Fase fase = Fase(objetosDoJogo, "sprites/background3.txt", "sprites/mensagemfase3.txt" , "sounds/musicafase1.mp3");
+                Fase fase = Fase(objetosDoJogo, "sprites/background2.txt", "sprites/mensagemfase3.txt" , "sounds/musicafase1.mp3");
                 bool venceu = fase.jogar();
                 if(venceu){
                     faseAtual = 0;
