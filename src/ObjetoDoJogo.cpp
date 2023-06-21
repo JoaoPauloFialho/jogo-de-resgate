@@ -43,7 +43,7 @@ void ObjetoDoJogo::moveTo(string lado){
 };
 
 void ObjetoDoJogo::moveBaixo(){
-    if((y+altura+1) < jogo::YINICIALBASE+2) y+= jogo::DESLOCAMENTO;//+1 pois quero que o helicoptero fique no mínimo na altura da primeira linha da base (sobrepondo primeira linha)
+    if((y+altura+jogo::DESLOCAMENTO) < jogo::YINICIALBASE+jogo::ALTURABASE) y+= jogo::DESLOCAMENTO;//+ALTURA BASE pois quero que o helicoptero fique no mínimo na altura da primeira linha da base (sobrepondo primeira linha)
 };
 
 void ObjetoDoJogo::moveCima(){
@@ -55,7 +55,7 @@ void ObjetoDoJogo::moveEsquerda(){
 }
 
 void ObjetoDoJogo::moveDireita(){
-    if((x+largura+1) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO ;
+    if((x+largura+jogo::DESLOCAMENTO) < jogo::LARGURAJOGO) x+= jogo::DESLOCAMENTO ;
 };
 
 void ObjetoDoJogo::atualizar(){
@@ -67,7 +67,7 @@ void ObjetoDoJogo::inicializar(){};
 bool ObjetoDoJogo::colideComObjeto(ObjetoDoJogo obj){
     if((obj.getY() >= y && obj.getY() <= y+altura-1) || (y >= obj.getY() && y<= obj.getY() + obj.getAltura())){
         if((obj.getX() >= x && obj.getX() <= x+largura) || (x >= obj.getX() && x<= obj.getX() + obj.getLargura())){
-            return true; //tem 2 ifs pois eu preciso checar se o obj1 está sobre o obj2 ou se o obj2 está sobre obj1
+            return true; //preciso checar se o obj1 está sobre o obj2 ou se o obj2 está sobre obj1
         }                //isso acontece pois tem essas 2 possibilidades para que o obj de analise esteja colidindo
     }                    //com o outro
     return false;
