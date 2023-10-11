@@ -59,7 +59,7 @@ system("cls");
 Helicoptero hel("sprites/helicoptero.txt",0 , 0);
 ```
 
-#### OBS** Não faça sprites com largura e alturas diferentes, além de não ficar agradável aos olhos pode acabar gerando bugs, cheque no arquivo txt se cada sprite tem altura (quantidade de linhas) e largura (quantidade de caracteres em cada linha) iguais
+#### OBS** Não faça sprites com largura e alturas diferentes para o objeto móvel, além de não ficar agradável aos olhos pode acabar gerando bugs, cheque no arquivo txt se cada sprite tem altura (quantidade de linhas) e largura (quantidade de caracteres em cada linha) iguais
 
 #### OBS** Lembre de checar no arquivo de constantes no namespace jogo a altura e largura dos sprites da Base e Helicoptero, é muito importante isso para que o joyo funcione corretamente
 
